@@ -1,0 +1,241 @@
+#!/bin/bash
+
+# This script prepares a linux desktop environment for this first time by
+# installing and configuring a bunch of commonly used applications. Before
+# running it, you should read it, understand it, and tweak it as necessary.
+# It is liable to fall out-of-date, and has some idiosyncatic configuration
+# options that you might not want (such as setting vim as your default editor
+# for git). It was tested with Linux Mint 18.2 (which is based on Ubuntu 16.04)
+# on 9/19/2017. It should be relatively safe to run multiple times in a row,
+# although some commands will fail if, for example, certain directories and
+# programs already exist.
+# Author: Nathan J Cochran
+
+if (( $(id -u) == 0 )); then
+	printf "Please do not run as root (script will prompt for root credentials when necessary)\n"
+	exit 1
+fi
+
+printf "\n--------------------\n"
+printf "Updating System Packages"
+printf "\n--------------------\n"
+sudo apt-get update
+sudo apt-get dist-upgrade			# Smarter than upgrade. Handles updating/removing dependencies
+
+printf "\n--------------------\n"
+printf "Installing vim"
+printf "\n--------------------\n"
+sudo add-apt-repository ppa:jonathonf/vim	# More up-to-date than the default provided by the software manager
+sudo apt-get update
+sudo apt-get install vim
+sudo apt-get install vim-gtk                # Important for clipboard support
+
+printf "\n--------------------\n"
+printf "Installing git"
+printf "\n--------------------\n"
+sudo add-apt-repository ppa:git-core/ppa	# More up-to-date than the default provided by the software manager
+sudo apt-get update
+sudo apt-get install git
+
+printf "\n--------------------\n"
+printf "Configuring git"
+printf "\n--------------------\n"
+echo -n "Please enter your name (for git config): "
+read name
+git config --global user.name "$name"
+echo -n "Please enter your email (for git config): "
+read email
+git config --global user.email "$email"
+git config --global core.editor vim		# If you don't want vim, change this to your preferred editor
+
+git config --global alias.co "checkout"		# If you don't want these git aliases, comment them out
+git config --global alias.st "status"
+git config --global alias.rso "remote show origin"
+git config --global alias.rpo "remote prune origin"
+git config --global alias.rao "remote add origin"
+git config --global alias.diffc "diff --cached"
+
+printf "\n--------------------\n"
+printf "Installing libsecret (git credential helper)"
+printf "\n--------------------\n"
+sudo apt-get install libsecret-1-0 libsecret-1-dev
+sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
+git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret 
+# git config --global credential.helper cache	# If you don't want credentials to be stored permanently, use this instead
+
+printf "\n--------------------\n"
+printf "Installing go"
+printf "\n--------------------\n"
+sudo add-apt-repository ppa:gophers/archive	# See: https://github.com/golang/go/wiki/Ubuntu
+sudo apt-get update
+sudo apt-get install golang-1.9 		# May need to update version number 
+mkdir ~/go ~/go/bin ~/go/pkg ~/go/src 		# If you want your go workspace in a non-standard location, change this
+export PATH=$PATH:/usr/lib/go-1.9/bin 		# Not permament unless set in $HOME/.profile, but necessary for :GoInstallBinaries to work (see below)
+export GOROOT=/usr/lib/go-1.9			# Not permament unless set in $HOME/.profile
+# export GOPATH=~/go 				# Not necessary unless go workspace is in a non-standard location
+
+printf "\n--------------------\n"
+printf "Installing vim-go"
+printf "\n--------------------\n"
+git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
+vim +GoInstallBinaries +qall			# Opens vim temporarily to run the :GoInstallBinaries command, then closes it
+
+printf "\n--------------------\n"
+printf "Installing vim-javascript"
+printf "\n--------------------\n"
+git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/plugins/start/vim-javascript
+
+printf "\n--------------------\n"
+printf "Installing vim-jsx"
+printf "\n--------------------\n"
+git clone https://github.com/mxw/vim-jsx.git ~/.vim/pack/plugins/start/vim-jsx
+
+printf "\n--------------------\n"
+printf "Installing vim-colors-solarized"
+printf "\n--------------------\n"
+git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized
+
+# sudo apt-get install dconf-cli          # Vim solarized colors only work if terminal is also solarized. See: https://github.com/altercation/vim-colors-solarized#important-note-for-terminal-users
+# cd ~
+# git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+# cd gnome-terminal-colors-solarized
+# ./install.sh                            # This will walk the user through the process, and they can abort if they want to
+
+printf "\n--------------------\n"
+printf "Installing PostgreSQL"
+printf "\n--------------------\n"
+wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - # See: https://www.postgresql.org/download/linux/ubuntu/
+line='deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main'
+file='/etc/apt/sources.list.d/pgdg.list'
+grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
+sudo apt-get update
+sudo apt-get install postgresql-9.6 		# May need to update version number
+
+printf "\n--------------------\n"
+printf "Installing pgAdmin"
+printf "\n--------------------\n"
+sudo apt-get install pgadmin3			# People seem to prefer pgadmin3 over pgadmin4
+
+printf "\n--------------------\n"
+printf "Installing Chrome"    
+printf "\n--------------------\n"
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - # See: https://askubuntu.com/a/510186
+line='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
+file='/etc/apt/sources.list.d/google-chrome.list'
+grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
+sudo apt-get update 
+sudo apt-get install google-chrome-stable
+
+printf "\n--------------------\n"
+printf "Installing Postman"
+printf "\n--------------------\n"
+wget -O ~/Downloads/postman.tar.gz https://dl.pstmn.io/download/latest/linux64 # See: https://blog.bluematador.com/posts/postman-how-to-install-on-ubuntu-1604/
+sudo tar -xzf ~/Downloads/postman.tar.gz -C /opt
+sudo ln -s /opt/Postman/Postman /usr/bin/postman
+
+printf "\n--------------------\n"
+printf "Installing Slack"
+printf "\n--------------------\n"
+wget -P ~/Downloads https://downloads.slack-edge.com/linux_releases/slack-desktop-2.8.0-amd64.deb # May need to update version number (visit slack download page to find it)
+sudo apt-get install ~/Downloads/slack-desktop-2.8.0-amd64.deb
+
+printf "\n--------------------\n"
+printf "Installing Spotify"
+printf "\n--------------------\n"
+sudo apt-get install spotify-client
+
+go_projects=(					# May need to add/remove projects
+        account
+        algolia-indexer
+        auth
+        backpack
+        data-transfer
+        detail-management
+        dynamic-fact-transporter
+        dynamic-list-transporter
+        enliten
+        entity
+        entity-transporter
+        fact
+        fact-transporter
+        go-common
+        grade
+        juice
+        lead
+        legacy-new-world
+        list
+        loadtest
+        map
+        mock-service
+        metadata
+        photo
+        photo-uploader
+        premium
+        profile
+        qprof
+        ranking
+        ranking-transporter
+        realtorcomlocator
+        scatterplot
+        scatterplot-transporter
+        scholarship
+        scholarship-deadliner
+        scholarship-indexer
+        search
+        survey
+        urlinator
+)
+
+export GIT_TERMINAL_PROMPT=1			# So git will prompt for credentials, instead of failing
+for go_project in "${go_projects[@]}"; do
+	printf "\n--------------------\n"
+	printf "Installing $go_project"
+	printf "\n--------------------\n"
+	go get -u -v "github.com/nicheinc/$go_project"
+done
+
+printf "\n--------------------\n"
+printf "Installing nvm"
+printf "\n--------------------\n"
+wget -q -O - https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash # May need to update version number
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+printf "\n--------------------\n"
+printf "Installing node.js"
+printf "\n--------------------\n"
+nvm install 6.11.2
+npm install -g nodemon
+
+printf "\n--------------------\n"
+printf "Installing Website"
+printf "\n--------------------\n"
+mkdir ~/js					# If you want the Website code to live in a different directory, change this
+cd ~/js
+git clone https://github.com/nicheinc/Website.git
+
+if [ ! -f ~/.ssh/id_rsa ]; then
+	# See: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+	printf "Generating ssh key required for github.com/nicheinc dependencies\n"
+	ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa -N ''
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_rsa
+	sudo apt-get install xclip
+	xclip -sel clip < ~/.ssh/id_rsa.pub
+	google-chrome https://github.com/settings/keys
+	printf "\n--------------------\n"
+	printf "NOTE: Please log in to github.com, click 'New SSH Key', and paste into the 'Key' textbox (the ssh key has already been copied to your clipboard)\n"
+	printf "NOTE: You may give the key any descriptive name you want (e.g. niche-linux)\n"
+	printf "NOTE: Once finished, press [Enter] to continue"
+	read -s
+fi
+
+cd ~/js/Website
+npm install
+# npm run dev 					# This would run webpack, but webpack is in watch mode by default in dev, due to webpack.config.json, so it would hang indefinately :/
+
+printf "\n--------------------\n"
+printf "Cleaning Up Unused Dependencies"
+printf "\n--------------------\n"
+sudo apt-get autoremove
