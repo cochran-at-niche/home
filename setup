@@ -239,3 +239,11 @@ printf "\n--------------------\n"
 printf "Cleaning Up Unused Dependencies"
 printf "\n--------------------\n"
 sudo apt-get autoremove
+
+printf "\n--------------------\n"
+printf "Fetching .vimrc, .bashrc, and .profile"
+printf "\n--------------------\n"
+
+wget -O ~/.vimrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.vimrc
+wget -O ~/.bashrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.bashrc
+wget -O ~/.profile - https://raw.githubusercontent.com/cochran-at-niche/home/master/.profile
