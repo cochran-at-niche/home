@@ -253,5 +253,3 @@ printf "\n--------------------\n"
 wget -O ~/.vimrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.vimrc
 wget -O ~/.bashrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.bashrc
 wget -O ~/.profile - https://raw.githubusercontent.com/cochran-at-niche/home/master/.profile
-. ~/.bashrc
-. ~/.profile
