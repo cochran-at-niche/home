@@ -150,6 +150,20 @@ printf "Installing spotify"
 printf "\n--------------------\n"
 sudo apt-get install spotify-client
 
+printf "\n--------------------\n"
+printf "Installing shutter"
+printf "\n--------------------\n"
+sudo add-apt-repository ppa:shutter/ppa
+sudo apt-get update
+sudo apt-get install shutter
+
+printf "\n--------------------\n"
+printf "Installing peek"
+printf "\n--------------------\n"
+sudo add-apt-repository ppa:peek-developers/stable
+sudo apt-get update
+sudo apt-get install peek
+
 go_projects=(					# May need to add/remove projects
         account
         algolia-indexer
