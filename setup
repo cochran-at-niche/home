@@ -27,8 +27,7 @@ printf "Installing vim"
 printf "\n--------------------\n"
 sudo add-apt-repository ppa:jonathonf/vim	# More up-to-date than the default provided by the software manager
 sudo apt-get update
-sudo apt-get install vim
-sudo apt-get install vim-gtk                # Important for clipboard support
+sudo apt-get install vim-gnome              # Gnome version is necessary for gvim/clipboard support
 
 printf "\n--------------------\n"
 printf "Installing git"
