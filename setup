@@ -36,6 +36,8 @@ sudo add-apt-repository ppa:git-core/ppa	# More up-to-date than the default prov
 sudo apt-get update
 sudo apt-get install git-all
 
+wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh # For git info in terminal prompt
+
 printf "\n--------------------\n"
 printf "Configuring git"
 printf "\n--------------------\n"
