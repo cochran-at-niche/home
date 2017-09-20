@@ -34,7 +34,7 @@ printf "Installing git"
 printf "\n--------------------\n"
 sudo add-apt-repository ppa:git-core/ppa	# More up-to-date than the default provided by the software manager
 sudo apt-get update
-sudo apt-get install git
+sudo apt-get install git-all
 
 printf "\n--------------------\n"
 printf "Configuring git"
