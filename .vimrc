@@ -29,8 +29,7 @@ syntax on
 
 " Colors
 set background=dark
-"let g:solarized_termcolors=256
-"colorscheme solarized
+colorscheme solarized
 
 " A font that doesn't cause italics to be cut off (windows only)
 " set guifont=Consolas:h11
