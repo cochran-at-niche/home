@@ -68,14 +68,17 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=true # do nothing if current directory ignored by gi
 if [ "$color_prompt" = yes ]; then
     GIT_PS1_SHOWCOLORHINTS=true # dirty state and untracked file indicators are color-coded
     if [[ ${EUID} == 0 ]] ; then
-        PROMPT_COMMAND='__git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W" "\n\$\[\033[00m\] "'
+        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W'
+        POST_PROMPT_COMMAND='\n\$\[\033[00m\] '
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     else
-        PROMPT_COMMAND='__git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w" "\n\$\[\033[00m\] "'
+        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w'
+        POST_PROMPT_COMMAND='\n\$\[\033[00m\] '
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     fi
 else
-    PROMPT_COMMAND='__git_ps1 "${debian_chroot:+($debian_chroot)}\u@\h \w" "\n\$ "'
+    PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\u@\h \w'
+    POST_PROMPT_COMMAND='\n\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h \w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
@@ -83,11 +86,15 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
+    TITLE_COMMAND='\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]'
+    PRE_PROMPT_COMMAND="$TITLE_COMMAND$PRE_PROMPT_COMMAND"
     ;;
 *)
     ;;
 esac
+
+PROMPT_COMMAND="__git_ps1 '$PRE_PROMPT_COMMAND' '$POST_PROMPT_COMMAND'"
+unset PRE_PROMPT_COMMAND POST_PROMPT_COMMAND
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
