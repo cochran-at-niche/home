@@ -58,15 +58,25 @@ fi
 
 # For git info in terminal prompt. See: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 source ~/.git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=1 # unstaged changes *, staged changed +
+GIT_PS1_SHOWSTASHSTATE=1 # stashed changes $
+GIT_PS1_SHOWUNTRACKEDFILES=1 # untracked files %
+GIT_PS1_SHOWUPSTREAM="git auto" # behind origin <, ahead of origin >, diverged from origin <>, no difference = (could also use verbose & name options for more info)
+GIT_PS1_DESCRIBE_STYLE="branch" # when detached head, shows commit relative to newer tag or branch (e.g. master~4)
+GIT_PS1_HIDE_IF_PWD_IGNORED=1 # do nothing if current directory ignored by git
 
 if [ "$color_prompt" = yes ]; then
+    GIT_PS1_SHOWCOLORHINTS=1 # dirty state and untracked file indicators are color-coded
     if [[ ${EUID} == 0 ]] ; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W $(__git_ps1 "(%s)"\n)\$\[\033[00m\] '
+        PROMPT_COMMAND='__git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W" "\n)\$\[\033[00m\] "'
+        #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W$(__git_ps1 " (%s)"\n)\$\[\033[00m\] '
     else
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w $(__git_ps1 "(%s)")\n\$\[\033[00m\] '
+        PROMPT_COMMAND='__git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w" "\n\$\[\033[00m\] "'
+        #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
+    PROMPT_COMMAND='__git_ps1 "${debian_chroot:+($debian_chroot)}\u@\h \w" "\n\$ "'
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h \w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
 
