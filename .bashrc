@@ -69,19 +69,21 @@ if [ "$color_prompt" = yes ]; then
     GIT_PS1_SHOWCOLORHINTS=true # dirty state and untracked file indicators are color-coded
     if [[ ${EUID} == 0 ]] ; then
         PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W'
-        POST_PROMPT_COMMAND='\n\$\[\033[00m\] '
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     else
         PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w'
-        POST_PROMPT_COMMAND='\n\$\[\033[00m\] '
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     fi
+    POST_PROMPT_COMMAND='\n\$\[\033[00m\] '
 else
     PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\u@\h \w'
     POST_PROMPT_COMMAND='\n\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h \w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
+
+ERROR_CODE_COMMAND=' $(RESULT=$?; if (( RESULT != 0 )); then echo "ERROR: $RESULT"; fi)'
+POST_PROMPT_COMMAND="$ERROR_CODE_COMMAND$POST_PROMPT_COMMAND"
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
