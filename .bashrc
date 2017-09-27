@@ -82,7 +82,7 @@ else
 fi
 unset color_prompt force_color_prompt
 
-ERROR_CODE_COMMAND=' $(RESULT=$?; if (( RESULT != 0 )); then echo "ERROR: $RESULT"; fi)'
+ERROR_CODE_COMMAND='\[\033[01;31m\]$(RESULT=$?; if (( RESULT != 0 )); then echo " ERROR: $RESULT"; fi)\[\033[01;34m\]'
 POST_PROMPT_COMMAND="$ERROR_CODE_COMMAND$POST_PROMPT_COMMAND"
 
 # If this is an xterm set the title to user@host:dir
