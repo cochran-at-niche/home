@@ -125,6 +125,22 @@ printf "\n--------------------\n"
 sudo apt-get install pgadmin3			# People seem to prefer pgadmin3 over pgadmin4
 
 printf "\n--------------------\n"
+printf "Installing mssql-tools"
+printf "\n--------------------\n"
+wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+line=$(wget -q -O - https://packages.microsoft.com/config/ubuntu/16.04/prod.list)
+file='/etc/apt/sources.list.d/msprod.list'
+grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
+sudo apt-get update 
+sudo apt-get install mssql-tools unixodbc-dev
+
+printf "\n--------------------\n"
+printf "Installing dbeaver"
+printf "\n--------------------\n"
+wget -P ~/Downloads https://dbeaver.jkiss.org/files/dbeaver-ce_latest_amd64.deb # May need to update at some point (visit dbeaver download page to find link)
+sudo apt-get install ~/Downloads/dbeaver-ce_latest_amd64.deb
+
+printf "\n--------------------\n"
 printf "Installing chrome"    
 printf "\n--------------------\n"
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - # See: https://askubuntu.com/a/510186

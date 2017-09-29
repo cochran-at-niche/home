@@ -16,8 +16,11 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+# set PATH so it includes user's private bin directories:
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# set PATH so it includes mssql tools:
+export PATH="$PATH:/opt/mssql-tools/bin"
 
 # set up go env variables:
 export GOROOT=/usr/lib/go-1.9
