@@ -216,6 +216,9 @@ for go_project in "${go_projects[@]}"; do
 	go get -u -v "github.com/nicheinc/$go_project"
 done
 
+# Create symbolic link in home directory to nicheinc directory
+ln -s ~/go/src/github.com/nicheinc/
+
 printf "\n--------------------\n"
 printf "Installing nvm"
 printf "\n--------------------\n"
