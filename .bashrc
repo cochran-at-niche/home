@@ -151,6 +151,27 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
+# node/nvm setup:
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# note-taking function (see: https://dev.to/ricardomol/note-taking-from-the-command-line-156):
+note() {
+    if [ ! -z "$1" ]; then
+        # Using the "$@" here will take all parameters passed into
+        # this function so we can place everything into our file.
+        echo "$@" >> "$HOME/notes.md"
+    else
+        if [ ! -t 0 ]; then
+            # If no arguments were passed, and stdin is not a terminal
+            # (i.e. it's a pipe or redirect), use that:
+            cat - >> "$HOME/notes.md"
+        else
+            # Otherwise, output the notes:
+            if [ -e "$HOME/notes.md" ]; then
+                cat "$HOME/notes.md"
+            fi
+        fi
+    fi
+}
