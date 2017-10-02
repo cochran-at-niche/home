@@ -117,7 +117,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias lg='ls -1F --g'
+alias lg='ls -1XF --g'
 
 # other aliases
 alias j='jobs'
