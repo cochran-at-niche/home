@@ -53,14 +53,18 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_contraints = 1
 
+" Fix GoCoverage colors to work with solarized in the terminal
+hi def goCoverageCovered ctermfg=darkgreen guifg=#A6E22E
+hi def goCoverageUncover ctermfg=darkred guifg=#F92672
+
 " Go mappings
-au FileType go nmap <F6> <Plug>(go-metalinter)
-au FileType go nmap <F7> <Plug>(go-alternate-edit)
-au FileType go nmap <F8> <Plug>(go-test)
-au FileType go nmap <F9> <Plug>(go-coverage-toggle)
-au FileType go nmap <F10> <Plug>(go-coverage-browser)
-au FileType go nmap <F11> <Plug>(go-install)
-au FileType go nmap <F12> <Plug>(go-doc-browser)
+au FileType go nmap <F3> <Plug>(go-metalinter)
+au FileType go nmap <F4> <Plug>(go-alternate-edit)
+au FileType go nmap <F5> <Plug>(go-test)
+au FileType go nmap <F6> <Plug>(go-coverage-toggle)
+au FileType go nmap <F7> <Plug>(go-coverage-browser)
+au FileType go nmap <F8> <Plug>(go-install)
+au FileType go nmap <F9> <Plug>(go-doc-browser)
 
 " Center on cursor during search
 noremap n nzz
