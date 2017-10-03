@@ -76,6 +76,11 @@ export GOROOT=/usr/lib/go-1.9			    # Not permament unless set in $HOME/.profile
 # export GOPATH=~/go 				        # Not necessary unless go workspace is in a non-standard location
 
 printf "\n--------------------\n"
+printf "Installing govendor"
+printf "\n--------------------\n"
+go get github.com/kardianos/govendor
+
+printf "\n--------------------\n"
 printf "Installing vim-go"
 printf "\n--------------------\n"
 git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
