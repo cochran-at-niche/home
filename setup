@@ -125,11 +125,18 @@ sudo apt-get update
 sudo apt-get install postgresql-9.6 		# May need to update version number
 sudo apt-get install postgresql-contrib-9.6
 
+echo -n "Please enter password for default postgres user: "
+read password
+sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$password'"
+
 # Create postgres user with same name as operating system user (makes
 # local login via IDENT authentication possible - in pgAdminIII, you must
-# leave host and password blank, and set username to your username):
-user=$USER
-sudo -u postgres createuser -s $user    
+# leave host and password blank, and set username to your username).
+# NOTE: Decided to set password for default postgres user instead,
+# because clients connecting over TCP/IP need to use password
+# authentication anyways (IDENT only works locally):
+#user=$USER
+#sudo -u postgres createuser -s $user    
 
 printf "\n--------------------\n"
 printf "Installing pgAdmin"
