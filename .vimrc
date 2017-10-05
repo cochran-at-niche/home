@@ -1,6 +1,9 @@
 " Line numbers
 set nu
 
+" Show commands as they're being typed
+set showcmd
+
 " Tabs
 set smartindent
 set tabstop=4
