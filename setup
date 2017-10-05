@@ -123,6 +123,7 @@ file='/etc/apt/sources.list.d/pgdg.list'
 grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
 sudo apt-get update
 sudo apt-get install postgresql-9.6 		# May need to update version number
+sudo apt-get install postgresql-contrib-9.6
 
 # Create postgres user with same name as operating system user (makes
 # local login via IDENT authentication possible - in pgAdminIII, you must
