@@ -193,6 +193,8 @@ printf "\n--------------------\n"
 sudo add-apt-repository ppa:shutter/ppa
 sudo apt-get update
 sudo apt-get install shutter
+sudo apt-get install libgoo-canvas-perl # Enables editing screenshots
+sudo apt-get install gnome-web-photo    # Enables capturing web pages
 
 printf "\n--------------------\n"
 printf "Installing peek"
