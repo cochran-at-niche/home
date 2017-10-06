@@ -266,7 +266,16 @@ printf "\n--------------------\n"
 printf "Installing node.js"
 printf "\n--------------------\n"
 nvm install 6.11.2
+
+printf "\n--------------------\n"
+printf "Installing nodemon"
+printf "\n--------------------\n"
 npm install -g nodemon
+
+printf "\n--------------------\n"
+printf "Installing doctoc"
+printf "\n--------------------\n"
+npm install -g doctoc
 
 printf "\n--------------------\n"
 printf "Installing Website"
