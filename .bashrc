@@ -90,7 +90,7 @@ POST_PROMPT_COMMAND="$ERROR_CODE_COMMAND$POST_PROMPT_COMMAND"
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
+xterm*|rxvt*|screen*)
     TITLE_COMMAND='\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]'
     PRE_PROMPT_COMMAND="$TITLE_COMMAND$PRE_PROMPT_COMMAND"
     ;;

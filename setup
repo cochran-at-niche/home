@@ -89,6 +89,11 @@ printf "\n--------------------\n"
 go get github.com/kardianos/govendor
 
 printf "\n--------------------\n"
+printf "Installing vim-tmux-navigator"
+printf "\n--------------------\n"
+git clone https://github.com/christoomey/vim-tmux-navigator ~/.vim/pack/plugins/start/vim-tmux-navigator
+
+printf "\n--------------------\n"
 printf "Installing vim-go"
 printf "\n--------------------\n"
 git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
