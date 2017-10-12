@@ -39,6 +39,14 @@ sudo apt-get install git-all
 # wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh # For git info in terminal prompt (not needed, seems to be pre-installed)
 
 printf "\n--------------------\n"
+printf "Installing tmux"
+printf "\n--------------------\n"
+sudo add-apt-repository ppa:pi-rho/dev
+sudo apt-get update
+sudo apt-get install tmux-next
+sudo ln -s /usr/bin/tmux-next /usr/bin/tmux
+
+printf "\n--------------------\n"
 printf "Configuring git"
 printf "\n--------------------\n"
 echo -n "Please enter your name (for git config): "
