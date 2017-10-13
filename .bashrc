@@ -8,6 +8,11 @@ case $- in
       *) return;;
 esac
 
+# Start tmux, if not already in tmux:
+if [ -z "$TMUX" ]; then
+    exec tmux new-session -A -s $USER
+fi
+
 # vi mode ftw
 set -o vi
 
