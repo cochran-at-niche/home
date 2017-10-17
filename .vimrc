@@ -87,6 +87,10 @@ noremap G Gzz
 noremap <C-e> j<C-e>
 noremap <C-y> k<C-y>
 
+" Scroll and move cursor with ctrl-j and ctrl-k
+noremap <C-j> j<C-e>
+noremap <C-k> k<C-y>
+
 " jj to escape
 inoremap jj <ESC>
 
@@ -116,3 +120,24 @@ au FileType go nmap <F6> <Plug>(go-coverage-toggle)
 au FileType go nmap <F7> <Plug>(go-coverage-browser)
 au FileType go nmap <F8> <Plug>(go-install)
 au FileType go nmap <F9> <Plug>(go-doc-browser)
+
+" Custom vim-tmux-navigator mappings
+" see: https://github.com/christoomey/vim-tmux-navigator
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+
+" Make sure key codes for alt-keys are interpreted correctly:
+set <M-h>=h
+set <M-j>=j
+set <M-k>=k
+set <M-l>=l
+set <M-\>=\
+"
+" Timeout for keycodes is instantaneous so esc key doesn't wait for next key
+" press (to see if it should be interpreted as the alt/meta key)
+set ttimeoutlen=0
