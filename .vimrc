@@ -53,6 +53,10 @@ set autoread
 " replacing them with @ symbols
 set display+=lastline
 
+" Move vertically by visual line, rather than actual line
+nnoremap j gj
+nnoremap k gk
+
 " Use the computer's default clipboard (windows should use unnamed)
 set clipboard=unnamedplus
 
@@ -61,6 +65,9 @@ set mouse=a
 
 " Syntax highlighting
 syntax on
+
+" Show matching parens characters
+set showmatch
 
 " Colors
 set background=dark
@@ -137,7 +144,18 @@ set <M-j>=j
 set <M-k>=k
 set <M-l>=l
 set <M-\>=\
-"
+
+" Make sure ctrl-arrow keys work:
+" see: http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
+set <F13>=[1;5D
+set <F14>=[1;5A
+set <F15>=[1;5B
+set <F16>=[1;5C
+map <F13> <C-Left>
+map <F14> <C-Up>
+map <F15> <C-Down>
+map <F16> <C-Right>
+
 " Timeout for keycodes is instantaneous so esc key doesn't wait for next key
 " press (to see if it should be interpreted as the alt/meta key)
 set ttimeoutlen=0
