@@ -5,7 +5,7 @@ set nu
 set showcmd
 
 " Search as you type
-set incsearch
+" set incsearch
 
 " Highlight search terms
 set hlsearch
