@@ -138,24 +138,23 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 
-" Make sure key codes for alt-keys are interpreted correctly:
+" Make sure key codes for alt-keys are interpreted correctly
+" (Note that this breaks macros with <Esc> followed by h/j/k/l)
 set <M-h>=h
 set <M-j>=j
 set <M-k>=k
 set <M-l>=l
 set <M-\>=\
 
-" Make sure ctrl-arrow keys work:
-" see: http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
-set <F13>=[1;5D
-set <F14>=[1;5A
-set <F15>=[1;5B
-set <F16>=[1;5C
-map <F13> <C-Left>
-map <F14> <C-Up>
-map <F15> <C-Down>
-map <F16> <C-Right>
+" Fix arrow key mappings in tmux (ctrl-arrow + shift-arrow)
+" see: https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
+if &term =~ '^screen'
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
 
 " Timeout for keycodes is instantaneous so esc key doesn't wait for next key
-" press (to see if it should be interpreted as the alt/meta key)
+" press (to see if it should be interpreted as the alt/ctrl/shift key)
 set ttimeoutlen=0
