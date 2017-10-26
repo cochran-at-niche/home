@@ -1,5 +1,6 @@
 " Line numbers
-set nu
+set number
+set relativenumber
 
 " Show commands as they're being typed
 set showcmd
@@ -11,7 +12,7 @@ set showcmd
 set hlsearch
 
 " Enter key clears highlighted search terms
-nnoremap <return> :noh<return><return>
+nnoremap <silent> <return> :noh<return><return>
 
 " Tabs and indentation
 set autoindent
@@ -105,7 +106,7 @@ inoremap jj <ESC>
 autocmd FileType markdown :set tw=79
 autocmd FileType markdown :set spell
 
-" Go configuration
+" Vim-go configuration
 let g:go_fmt_command = "goimports"
 " let g:go_metalinter_autosave = 1
 let g:go_highlight_functions = 1
@@ -131,12 +132,16 @@ au FileType go nmap <F9> <Plug>(go-doc-browser)
 " Custom vim-tmux-navigator mappings
 " see: https://github.com/christoomey/vim-tmux-navigator
 let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+inoremap <silent> <M-h> <Esc>:TmuxNavigateLeft<cr>i
+inoremap <silent> <M-j> <Esc>:TmuxNavigateDown<cr>i
+inoremap <silent> <M-k> <Esc>:TmuxNavigateUp<cr>i
+inoremap <silent> <M-l> <Esc>:TmuxNavigateRight<cr>i
+inoremap <silent> <M-\> <Esc>:TmuxNavigatePrevious<cr>i
 
 " Make sure key codes for alt-keys are interpreted correctly
 " (Note that this breaks macros with <Esc> followed by h/j/k/l)
