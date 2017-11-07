@@ -92,8 +92,8 @@ noremap gg ggzz
 noremap G Gzz
 
 " Move cursor when scrolling with ctrl-e and ctrl-y
-noremap <C-e> j<C-e>
-noremap <C-y> k<C-y>
+" noremap <C-e> j<C-e>
+" noremap <C-y> k<C-y>
 
 " Scroll and move cursor with ctrl-j and ctrl-k
 noremap <C-j> j<C-e>
