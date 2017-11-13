@@ -168,9 +168,15 @@ export NVM_DIR="$HOME/.nvm"
 # note-taking function (see: https://dev.to/ricardomol/note-taking-from-the-command-line-156):
 note() {
     if [ ! -z "$1" ]; then
-        # Using the "$@" here will take all parameters passed into
-        # this function so we can place everything into our file.
-        echo "$@" >> "$HOME/notes.md"
+        if [ $1 = "-d" ] && [[ $2 =~ ^[0-9]+$ ]]; then
+            # If argument is -d followed by a number,
+            # then delete that line from the notes file
+            sed -i -e "$2d" "$HOME/notes.md"
+        else
+            # Using the "$@" here will take all parameters passed into
+            # this function so we can place everything into our file.
+            echo "$@" >> "$HOME/notes.md"
+        fi
     else
         if [ ! -t 0 ]; then
             # If no arguments were passed, and stdin is not a terminal
