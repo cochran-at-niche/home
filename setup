@@ -173,6 +173,14 @@ printf "\n--------------------\n"
 wget -P ~/Downloads https://dbeaver.jkiss.org/files/dbeaver-ce_latest_amd64.deb # May need to update at some point (visit dbeaver download page to find link)
 sudo apt-get install ~/Downloads/dbeaver-ce_latest_amd64.deb
 
+
+printf "\n--------------------\n"
+printf "Installing firefox"    
+printf "\n--------------------\n"
+sudo add-apt-repository ppa:mozillateam/firefox-next
+sudo apt-get update
+sudo apt install firefox
+
 printf "\n--------------------\n"
 printf "Installing chrome"    
 printf "\n--------------------\n"
