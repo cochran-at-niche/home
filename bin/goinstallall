@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ls $HOME/go/src/github.com/nicheinc | xargs -I{} sh -c '
+echo;
+echo -----Installing {}-----;
+go install github.com/nicheinc/{};'
