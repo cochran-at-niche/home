@@ -1,3 +1,10 @@
 #!/bin/bash
-echo "Watching $(pwd)..."
-while inotifywait -qq -r -e close_write,moved_to,create .; do echo "Testing..."; go test ./...; done
+clear
+echo "Testing..."
+go test ./... $@
+while inotifywait -qq -r -e modify,close_write,move,create,delete .
+do
+    clear
+    echo "Testing..."
+    go test ./... $@
+done
