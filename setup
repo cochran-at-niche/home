@@ -229,6 +229,16 @@ printf "Installing inotify-tools"
 printf "\n--------------------\n"
 sudo apt-get install inotify-tools
 
+printf "\n--------------------\n"
+printf "Installing google-cloud-sdk"
+printf "\n--------------------\n"
+wget -P ~/Downloads https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-180.0.0-linux-x86_64.tar.gz
+tar -xvzf ~/Downloads/google-cloud-sdk-180.0.0-linux-x86_64.tar.gz -C ~/
+~/google-cloud-sdk/install.sh
+~/google-cloud-sdk/bin/gcloud init
+~/google-cloud-sdk/bin/gcloud components install app-engine-go
+~/google-cloud-sdk/bin/gcloud components update
+
 go_projects=(					# May need to add/remove projects
         account
         algolia-indexer
