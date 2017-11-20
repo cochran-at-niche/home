@@ -165,6 +165,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# google-cloud-sdk tools/command completion
+. $HOME/google-cloud-sdk/completion.bash.inc
+. $HOME/google-cloud-sdk/path.bash.inc
+
 # note-taking function (see: https://dev.to/ricardomol/note-taking-from-the-command-line-156):
 note() {
     if [ ! -z "$1" ]; then
