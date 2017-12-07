@@ -58,6 +58,7 @@ git config --global core.editor vim		    # If you don't want vim, change this to
 
 git config --global alias.co "checkout"     # If you don't want these git aliases, comment them out
 git config --global alias.st "status"
+git config --global alias.stats "status"
 git config --global alias.satus "status"
 git config --global alias.rso "remote show origin"
 git config --global alias.rpo "remote prune origin"
