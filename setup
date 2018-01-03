@@ -90,6 +90,16 @@ printf "\n--------------------\n"
 go get github.com/kardianos/govendor
 
 printf "\n--------------------\n"
+printf "Installing dep"
+printf "\n--------------------\n"
+go get -u github.com/golang/dep/cmd/dep
+
+printf "\n--------------------\n"
+printf "Installing graphviz"
+printf "\n--------------------\n"
+sudo apt-get install graphviz   # For visualizing dependency graphs - see: https://github.com/golang/dep#visualizing-dependencies
+
+printf "\n--------------------\n"
 printf "Installing vim-tmux-navigator"
 printf "\n--------------------\n"
 git clone https://github.com/christoomey/vim-tmux-navigator ~/.vim/pack/plugins/start/vim-tmux-navigator
