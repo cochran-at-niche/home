@@ -274,14 +274,17 @@ go_projects=(					# May need to add/remove projects
         entity-transporter
         fact
         fact-transporter
+        featured
         go-common
         grade
+        hydration
         juice
         lead
         legacy-new-world
         list
         loadtest
         map
+        mail
         mock-service
         metadata
         photo
