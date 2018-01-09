@@ -14,7 +14,10 @@ if [ -z "$TMUX" ]; then
 fi
 
 # vi mode ftw
-set -o vi
+# set -o vi
+
+# Preserve the physical directory structure when following symlinks
+set -o physical
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options

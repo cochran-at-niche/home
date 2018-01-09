@@ -1,3 +1,6 @@
+" Status line always shows
+set laststatus=2
+
 " Line numbers
 set number
 set relativenumber
