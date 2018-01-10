@@ -64,6 +64,9 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Git should prompt for credentials:
+export GIT_TERMINAL_PROMPT=1
+
 # For git info in terminal prompt. See: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 # source ~/.git-prompt.sh # Not needed, seems to be pre-installed
 GIT_PS1_SHOWDIRTYSTATE=true # unstaged changes *, staged changed +
