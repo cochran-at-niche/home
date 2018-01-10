@@ -1,3 +1,6 @@
+" Status line always shows
+set laststatus=2
+
 " Line numbers
 set number
 set relativenumber
@@ -128,6 +131,10 @@ au FileType go nmap <F6> <Plug>(go-coverage-toggle)
 au FileType go nmap <F7> <Plug>(go-coverage-browser)
 au FileType go nmap <F8> <Plug>(go-install)
 au FileType go nmap <F9> <Plug>(go-doc-browser)
+
+" Rename tmux window to name of file currently being edited in vim:
+" autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window " . expand("%"))
+" autocmd VimLeave * call system("tmux setw automatic-rename")
 
 " Custom vim-tmux-navigator mappings
 " see: https://github.com/christoomey/vim-tmux-navigator
