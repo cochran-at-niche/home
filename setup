@@ -311,8 +311,6 @@ go_projects=(					# May need to add/remove projects
         premium
         profile
         qprof
-        ranking
-        ranking-transporter
         realtorcomlocator
         scatterplot
         scatterplot-transporter

@@ -1,0 +1,53 @@
+#!/bin/bash
+
+go_projects=(
+        account
+        algolia-indexer
+        auth
+        backpack
+        data-transfer
+        detail-management
+        dynamic-fact-transporter
+        dynamic-list-transporter
+        enliten
+        entity
+        entity-transporter
+        fact
+        fact-transporter
+        featured
+        go-common
+        grade
+        hydration
+        juice
+        lead
+        legacy-new-world
+        list
+        loadtest
+        map
+        mail
+        mock-service
+        metadata
+        photo
+        photo-uploader
+        premium
+        profile
+        qprof
+        realtorcomlocator
+        scatterplot
+        scatterplot-transporter
+        scholarship
+        scholarship-deadliner
+        scholarship-indexer
+        search
+        survey
+        urlinator
+)
+
+for go_project in "${go_projects[@]}"; do
+	printf "\n--------------------\n"
+	printf "$go_project"
+	printf "\n--------------------\n"
+	cd $HOME/go/src/github.com/nicheinc/$go_project
+    go install
+    $HOME/go/bin/$go_project -h
+done
