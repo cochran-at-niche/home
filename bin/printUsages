@@ -15,12 +15,10 @@ go_projects=(
         fact
         fact-transporter
         featured
-        go-common
         grade
         hydration
         juice
         lead
-        legacy-new-world
         list
         loadtest
         map
@@ -44,10 +42,10 @@ go_projects=(
 )
 
 for go_project in "${go_projects[@]}"; do
-	printf "\n--------------------\n"
-	printf "$go_project"
-	printf "\n--------------------\n"
+	printf "\n## $go_project\n"
 	cd $HOME/go/src/github.com/nicheinc/$go_project
     go install
-    $HOME/go/bin/$go_project -h
+	printf "\n\`\`\`\n"
+    $HOME/go/bin/$go_project -help
+	printf "\n\`\`\`\n"
 done
