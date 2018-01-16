@@ -41,8 +41,10 @@ go_projects=(
         urlinator
 )
 
+printf "\n# Back-End Services ($(date +%Y-%m-%d))"
+
 for go_project in "${go_projects[@]}"; do
-	printf "\n## $go_project\n"
+    printf "\n## [$go_project](https://github.com/nicheinc/$go_project)\n"
 	cd $HOME/go/src/github.com/nicheinc/$go_project
     go install
 	printf "\n\`\`\`\n"
