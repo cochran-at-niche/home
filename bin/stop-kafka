@@ -1,7 +1,4 @@
 #!/bin/bash
 
-KAFKA_BIN=~/kafka_2.11-1.0.0/bin
-
-$KAFKA_BIN/kafka-server-stop.sh
-
-$KAFKA_BIN/zookeeper-server-stop.sh
+~/kafka/bin/kafka-server-stop.sh
+~/kafka/bin/zookeeper-server-stop.sh

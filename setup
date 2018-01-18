@@ -188,6 +188,7 @@ printf "Installing kafka"
 printf "\n--------------------\n"
 wget -P ~/Downloads http://www-us.apache.org/dist/kafka/1.0.0/kafka_2.11-1.0.0.tgz
 tar -xvzf ~/Downloads/kafka_2.11-1.0.0.tgz -C ~/
+mv ~/kafka_2.11-1.0.0 ~/kafka
 
 printf "\n--------------------\n"
 printf "Installing firefox"    

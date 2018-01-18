@@ -1,13 +1,4 @@
 #!/bin/bash
 
-KAFKA_BIN=~/kafka_2.11-1.0.0/bin
-
-KAFKA_JMX_PORT=22999 KAFKA_HEAP_OPS="-Xms512M -Xmx512M" $KAFKA_BIN/zookeeper-server-start.sh ~/kafka/zookeeper.properties &
-
-export KAFKA_HEAP_OPTS="-Xms768M -Xmx768M"
-
-KAFKA_JMX_PORT=29999 $KAFKA_BIN/kafka-server-start.sh ~/kafka/server-1.properties &
-
-KAFKA_JMX_PORT=39999 $KAFKA_BIN/kafka-server-start.sh ~/kafka/server-2.properties &
-
-KAFKA_JMX_PORT=49999 $KAFKA_BIN/kafka-server-start.sh  ~/kafka/server-3.properties &
+~/kafka/bin/zookeeper-server-start.sh ~/kafka/config/zookeeper.properties &> /dev/null &
+~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties &> /dev/null &
