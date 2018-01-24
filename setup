@@ -85,9 +85,14 @@ export GOROOT=/usr/lib/go-1.9			    # Not permament unless set in $HOME/.profile
 # export GOPATH=~/go 				        # Not necessary unless go workspace is in a non-standard location
 
 printf "\n--------------------\n"
+printf "Installing golang.org/x/tools"
+printf "\n--------------------\n"
+go get -u golang.org/x/tools/...
+
+printf "\n--------------------\n"
 printf "Installing govendor"
 printf "\n--------------------\n"
-go get github.com/kardianos/govendor
+go get -u github.com/kardianos/govendor
 
 printf "\n--------------------\n"
 printf "Installing dep"
