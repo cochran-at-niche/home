@@ -16,15 +16,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin directories:
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-# set PATH so it includes mssql tools:
-export PATH="$PATH:/opt/mssql-tools/bin"
-
-# set up go env variables:
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 

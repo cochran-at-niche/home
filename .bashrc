@@ -205,6 +205,16 @@ note() {
     fi
 }
 
+# set PATH so it includes user's private bin directories:
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# set PATH so it includes mssql tools:
+export PATH="/opt/mssql-tools/bin:$PATH"
+
+# set up go env variables:
+export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
+
+
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 
