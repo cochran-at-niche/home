@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ls $HOME/go/src/github.com/nicheinc | xargs -I{} sh -c '
+echo;
+echo -----Fetching {}-----;
+git -C $HOME/go/src/github.com/nicheinc/{} checkout '"$1"';
+git -C $HOME/go/src/github.com/nicheinc/{} pull;'

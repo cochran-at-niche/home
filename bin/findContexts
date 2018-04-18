@@ -1,8 +1,0 @@
-#!/bin/bash
-
-cd $GOPATH/src/github.com/nicheinc
-for dirname in `ls -d */client`; do
-    dirname=`dirname $dirname`
-    cd $GOPATH/src/github.com/nicheinc/$dirname
-    if govendor list | grep -q context; then pwd; fi
-done

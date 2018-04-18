@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cd $GOPATH/src/github.com/nicheinc
-for dirname in `ls -d */vendor`; do
-    dirname=`dirname $dirname`
-    cd $GOPATH/src/github.com/nicheinc/$dirname
-    out=$(govendor list +u +e +m)
-    if [[ $out ]]; then pwd; echo "$out"; echo; fi
-done

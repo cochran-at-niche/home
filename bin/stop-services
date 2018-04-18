@@ -1,0 +1,31 @@
+#!/bin/bash
+
+go_projects=(
+        account
+        auth
+        backpack
+        detail-management
+        entity
+        fact
+        featured
+        global-nav
+        grade
+        hydration
+        juice
+        lead
+        list
+        map
+        mail
+        metadata
+        photo
+        premium
+        profile
+        scatterplot
+        scholarship
+        search
+        survey
+)
+
+for go_project in "${go_projects[@]}"; do
+    pkill -f $go_project
+done

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+export GOPATH=$HOME/go
+
+go_projects=(
+        account
+        auth
+        backpack
+        detail-management
+        entity
+        fact
+        featured
+        global-nav
+        grade
+        hydration
+        juice
+        lead
+        list
+        map
+        mail
+        metadata
+        photo
+        premium
+        profile
+        scatterplot
+        scholarship
+        search
+        survey
+)
+
+for go_project in "${go_projects[@]}"; do
+    $go_project &
+done
