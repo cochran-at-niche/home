@@ -27,5 +27,5 @@ go_projects=(
 )
 
 for go_project in "${go_projects[@]}"; do
-    pkill -f $go_project
+    pkill -f $go_project -u $USER
 done
