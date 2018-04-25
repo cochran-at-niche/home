@@ -138,9 +138,9 @@ alias l1='lg'
 alias j='jobs'
 alias kj='kill $(jobs -p)'
 
-# Add an "alert" alias for long running commands.  Use like so:
+# Add an "alert" alias for long running commands. Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -213,6 +213,7 @@ export PATH="/opt/mssql-tools/bin:$PATH"
 
 # set up go env variables:
 export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
+export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
 
 
 # Add RVM to PATH for scripting
