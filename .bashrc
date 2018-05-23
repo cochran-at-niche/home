@@ -215,7 +215,6 @@ export PATH="/opt/mssql-tools/bin:$PATH"
 export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
 export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
 
-
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 
