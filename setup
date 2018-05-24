@@ -257,8 +257,8 @@ go get github.com/github/hub
 printf "\n--------------------\n"
 printf "Installing rvm and ruby 2.3.4"
 printf "\n--------------------\n"
-gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.4
+sudo gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+sudo curl -sSL https://get.rvm.io | sudo bash -s stable --ruby=2.3.4
 
 printf "\n--------------------\n"
 printf "Installing pip and virtualenv"
