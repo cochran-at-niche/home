@@ -57,13 +57,13 @@ git config --global user.email "$email"
 git config --global core.editor vim		    # If you don't want vim, change this to your preferred editor
 
 git config --global alias.co "checkout"     # If you don't want these git aliases, comment them out
+git config --global alias.b "branch"
 git config --global alias.st "status"
-git config --global alias.stats "status"
-git config --global alias.satus "status"
 git config --global alias.rso "remote show origin"
 git config --global alias.rpo "remote prune origin"
 git config --global alias.rao "remote add origin"
-git config --global alias.diffc "diff --cached"
+git config --global alias.d "diff"
+git config --global alias.dc "diff --cached"
 
 printf "\n--------------------\n"
 printf "Installing libsecret (git credential helper)"
