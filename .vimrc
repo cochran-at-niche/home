@@ -1,3 +1,8 @@
+
+" Turn off compatibility mode (prevents errors related to line-continuation in
+" plugins)
+set nocompatible
+"
 " Status line always shows
 set laststatus=2
 
