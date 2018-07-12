@@ -8,6 +8,12 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# Reset the default path to prevent duplicate path entries when starting tmux
+# (tmux inherits the PATH from the environment that started it, which means
+# each call to a tmux command the sources .bash_profile - e.g. tmux split-window - 
+# ends up duplicating a bunch of PATH entries):
+. "/etc/environment"
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
