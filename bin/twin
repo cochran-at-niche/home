@@ -1,4 +1,5 @@
 #!/bin/bash
 
+clear
 tmux-next split-window -h -c "#{pane_current_path}" -p 55
 tmux-next split-window -v -c "#{pane_current_path}" -p 20
