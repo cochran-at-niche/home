@@ -1,4 +1,4 @@
 #!/bin/bash
 
-~/kafka/bin/zookeeper-server-start.sh ~/kafka/config/zookeeper.properties &> /dev/null &
-~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties &> /dev/null &
+~/kafka/bin/zookeeper-server-start.sh ~/kafka/config/zookeeper.properties & # &> /dev/null
+~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties & # &> /dev/null

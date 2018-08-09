@@ -1,0 +1,17 @@
+#!/bin/bash
+clear
+echo "Installing..."
+go install $@
+
+inotifywait -e close_write,move,create,delete -m -r -q . |
+while read; do
+    # Because inotifywait generates lots of events, but we only
+    # want to test once, we drain all of the events and timeout
+    # after .1 seconds of no new events, then test:
+    while read -t .1; do
+        true
+    done
+    clear
+    echo "Installing..."
+    go install $@
+done
