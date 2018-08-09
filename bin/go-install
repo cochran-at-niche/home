@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 echo "Installing..."
-go install $@
+go install $@ && echo "Success!"
 
 inotifywait -e close_write,move,create,delete -m -r -q . |
 while read; do
@@ -13,5 +13,5 @@ while read; do
     done
     clear
     echo "Installing..."
-    go install $@
+    go install $@ && echo "Success!"
 done
