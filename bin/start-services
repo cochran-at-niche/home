@@ -3,29 +3,32 @@
 export GOPATH=$HOME/go
 
 go_projects=(
-        account
-        auth
-        backpack
-        detail-management
-        entity
-        fact
-        featured
-        global-nav
-        grade
-        hydration
-        juice
-        lead
-        list
-        map
-        mail
-        metadata
-        photo
-        premium
-        profile
-        scatterplot
-        scholarship
-        search
-        survey
+        "account -kafka.brokers=localhost:9092"
+        "auth"
+        "backpack"
+        "detail-management -kafka.brokers=localhost:9092"
+        "editorial"
+        "entity"
+        "fact"
+        "featured"
+        "global-nav"
+        "grade"
+        "hydration"
+        "juice"
+        "lead"
+        "list"
+        "map"
+        "mail -kafka.brokers=localhost:9092"
+        "metadata"
+        "partner"
+        "photo"
+        "premium"
+        "profile"
+        "scatterplot -kafka.brokers=localhost:9092"
+        "scholarship"
+        "search"
+        "survey -kafka.brokers=localhost:9092"
+        "test-content"
 )
 
 for go_project in "${go_projects[@]}"; do

@@ -5,6 +5,7 @@ go_projects=(
         auth
         backpack
         detail-management
+        editorial
         entity
         fact
         featured
@@ -17,6 +18,7 @@ go_projects=(
         map
         mail
         metadata
+        partner
         photo
         premium
         profile
@@ -24,8 +26,10 @@ go_projects=(
         scholarship
         search
         survey
+        test-content
 )
 
 for go_project in "${go_projects[@]}"; do
-    pkill -f $go_project -u $USER
+    #pkill -f $go_project -u $USER
+    killall $go_project -u $USER -e -v
 done
