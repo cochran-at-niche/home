@@ -76,8 +76,8 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
 printf "\n--------------------\n"
 printf "Installing go"
 printf "\n--------------------\n"
-wget -P ~/Downloads https://dl.google.com/go/go1.10.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf ~/Downloads/go1.10.linux-amd64.tar.gz
+wget -P ~/Downloads https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf ~/Downloads/go1.11.linux-amd64.tar.gz
 mkdir ~/go ~/go/bin ~/go/pkg ~/go/src   # If you want your go workspace in a non-standard location, change this
 export PATH=$PATH:/usr/local/go/bin     # Not permament unless set in $HOME/.profile, but necessary for :GoInstallBinaries to work (see below)
 # export GOPATH=~/go 			        # Not necessary unless go workspace is in a non-standard location
