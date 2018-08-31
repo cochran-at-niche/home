@@ -10,7 +10,7 @@ esac
 
 # Start tmux, if not already in tmux:
 if [ -z "$TMUX" ]; then
-    exec tmux-next new-session -A -s $USER
+    exec tmux new-session -A -s $USER
 fi
 
 # vi mode ftw
