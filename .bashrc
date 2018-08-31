@@ -10,7 +10,7 @@ esac
 
 # Start tmux, if not already in tmux:
 if [ -z "$TMUX" ]; then
-    exec tmux new-session -A -s $USER
+    exec tmux-next new-session -A -s $USER
 fi
 
 # vi mode ftw
@@ -214,6 +214,7 @@ export PATH="/opt/mssql-tools/bin:$PATH"
 # set up go env variables:
 export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
 export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
+export GO111MODULE="on"
 
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
