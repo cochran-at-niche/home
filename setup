@@ -64,6 +64,7 @@ git config --global alias.rpo "remote prune origin"
 git config --global alias.rao "remote add origin"
 git config --global alias.d "diff"
 git config --global alias.dc "diff --cached"
+git config --global alias.lg "log --all --decorate --oneline --graph"
 
 printf "\n--------------------\n"
 printf "Installing libsecret (git credential helper)"

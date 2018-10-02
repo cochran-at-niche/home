@@ -137,6 +137,7 @@ alias l1='lg'
 # other aliases
 alias j='jobs'
 alias kj='kill $(jobs -p)'
+alias postman='postman &> /dev/null'
 
 # Add an "alert" alias for long running commands. Use like so:
 #   sleep 10; alert
