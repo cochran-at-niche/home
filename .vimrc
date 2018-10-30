@@ -1,4 +1,3 @@
-
 " Turn off compatibility mode (prevents errors related to line-continuation in
 " plugins)
 set nocompatible
@@ -177,3 +176,9 @@ endif
 " Timeout for keycodes is instantaneous so esc key doesn't wait for next key
 " press (to see if it should be interpreted as the alt/ctrl/shift key)
 set ttimeoutlen=0
+
+" Set quicker update, for sake of vim-gitgutter status signs
+set updatetime=10
+
+" Make gitgutter sign column always show, to prevent screen jumping effect
+ set signcolumn=yes
