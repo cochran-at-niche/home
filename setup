@@ -129,6 +129,11 @@ printf "Installing vim-colors-solarized"
 printf "\n--------------------\n"
 git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized
 
+printf "\n--------------------\n"
+printf "Installing vim-git-gutter"
+printf "\n--------------------\n"
+
+git clone https://github.com/airblade/vim-gitgutter.git ~/.vim/pack/plugins/start/vim-gitgutter
 
 printf "\n--------------------\n"
 printf "Installing gnome terminal solarized"
