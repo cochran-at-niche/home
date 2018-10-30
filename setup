@@ -125,15 +125,21 @@ printf "\n--------------------\n"
 git clone https://github.com/mxw/vim-jsx.git ~/.vim/pack/plugins/start/vim-jsx
 
 printf "\n--------------------\n"
-printf "Installing vim-colors-solarized"
-printf "\n--------------------\n"
-git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized
-
-printf "\n--------------------\n"
 printf "Installing vim-git-gutter"
 printf "\n--------------------\n"
 
 git clone https://github.com/airblade/vim-gitgutter.git ~/.vim/pack/plugins/start/vim-gitgutter
+
+printf "\n--------------------\n"
+printf "Installing targets.vim"
+printf "\n--------------------\n"
+
+git clone https://github.com/wellle/targets.vim.git ~/.vim/pack/plugins/start/targets.vim
+
+printf "\n--------------------\n"
+printf "Installing vim-colors-solarized"
+printf "\n--------------------\n"
+git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized
 
 printf "\n--------------------\n"
 printf "Installing gnome terminal solarized"
