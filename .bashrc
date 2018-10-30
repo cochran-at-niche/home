@@ -220,7 +220,13 @@ export GO111MODULE="on"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # added by travis gem
-[ -f /home/nathan/.travis/travis.sh ] && source /home/nathan/.travis/travis.sh
+# [ -f /home/nathan/.travis/travis.sh ] && source /home/nathan/.travis/travis.sh
 
 # Add Kafka bin to PATH
 export PATH="$PATH:$HOME/kafka/bin"
+
+# qt stuff for citra emulator
+# https://github.com/citra-emu/citra/wiki/Building-For-Linux
+export QTDIR="$HOME/Qt5.11.2/5.11.2/gcc_64"
+export PATH="$QTDIR/bin:$PATH"
+export LD_LIBRARY_PATH="$QTDIR/lib:$LD_LIBRARY_PATH"

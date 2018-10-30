@@ -15,8 +15,8 @@ go_projects=(
         juice
         lead
         list
-        map
         mail
+        map
         metadata
         partner
         photo
