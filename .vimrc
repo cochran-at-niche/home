@@ -79,6 +79,7 @@ set showmatch
 
 " Colors
 set background=dark
+let g:solarized_termtrans=1
 colorscheme solarized
 
 " A font that doesn't cause italics to be cut off (windows only)
@@ -181,4 +182,4 @@ set ttimeoutlen=0
 set updatetime=10
 
 " Make gitgutter sign column always show, to prevent screen jumping effect
- set signcolumn=yes
+" set signcolumn=yes
