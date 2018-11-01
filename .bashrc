@@ -225,3 +225,10 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add Kafka bin to PATH
 export PATH="$PATH:$HOME/kafka/bin"
+
+# Source .env file
+if [ -f ~/.env ]; then
+    set -a
+    . ~/.env
+    set +a
+fi
