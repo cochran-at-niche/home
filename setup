@@ -137,6 +137,19 @@ printf "\n--------------------\n"
 git clone https://github.com/wellle/targets.vim.git ~/.vim/pack/plugins/start/targets.vim
 
 printf "\n--------------------\n"
+printf "Installing vim-surround"
+printf "\n--------------------\n"
+
+git clone https://github.com/tpope/vim-surround.git ~/.vim/pack/plugins/start/vim-surround
+vim -u NONE -c "helptags ~/.vim/pack/plugins/start/vim-surround/doc" -c q
+
+printf "\n--------------------\n"
+printf "Installing vim-repeat"
+printf "\n--------------------\n"
+
+git clone https://github.com/tpope/vim-repeat.git ~/.vim/pack/plugins/start/vim-repeat
+
+printf "\n--------------------\n"
 printf "Installing vim-colors-solarized"
 printf "\n--------------------\n"
 git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized
