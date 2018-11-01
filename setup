@@ -150,6 +150,13 @@ printf "\n--------------------\n"
 git clone https://github.com/tpope/vim-repeat.git ~/.vim/pack/plugins/start/vim-repeat
 
 printf "\n--------------------\n"
+printf "Installing vim-dadbod"
+printf "\n--------------------\n"
+
+git clone https://github.com/tpope/vim-dadbod.git ~/.vim/pack/plugins/start/vim-dadbod
+vim -u NONE -c "helptags ~/.vim/pack/plugins/start/vim-dadbod/doc" -c q
+
+printf "\n--------------------\n"
 printf "Installing vim-colors-solarized"
 printf "\n--------------------\n"
 git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized
