@@ -157,6 +157,13 @@ git clone https://github.com/tpope/vim-dadbod.git ~/.vim/pack/plugins/start/vim-
 vim -u NONE -c "helptags ~/.vim/pack/plugins/start/vim-dadbod/doc" -c q
 
 printf "\n--------------------\n"
+printf "Installing vim-airline"
+printf "\n--------------------\n"
+
+git clone https://github.com/vim-airline/vim-airline.git ~/.vim/pack/plugins/start/vim-airline
+git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/pack/plugins/start/vim-airline-themes
+
+printf "\n--------------------\n"
 printf "Installing vim-colors-solarized"
 printf "\n--------------------\n"
 git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized

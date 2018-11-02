@@ -82,6 +82,11 @@ set background=dark
 let g:solarized_termtrans=1
 colorscheme solarized
 
+" Statusline theme:
+" https://github.com/vim-airline/vim-airline-themes
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
 " A font that doesn't cause italics to be cut off (windows only)
 " set guifont=Consolas:h11
 
