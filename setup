@@ -240,7 +240,7 @@ sudo apt-get install ~/Downloads/dbeaver-ce_latest_amd64.deb
 printf "\n--------------------\n"
 printf "Installing kafka"
 printf "\n--------------------\n"
-wget -P ~/Downloads http://www-us.apache.org/dist/kafka/1.0.0/kafka_2.11-1.0.0.tgz
+wget -P ~/Downloads http://us.mirrors.quenda.co/apache/kafka/1.1.1/kafka_2.11-1.1.1.tgz
 tar -xvzf ~/Downloads/kafka_2.11-1.0.0.tgz -C ~/
 mv ~/kafka_2.11-1.0.0 ~/kafka
 
