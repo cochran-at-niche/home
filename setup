@@ -183,7 +183,7 @@ printf "\n--------------------\n"
 printf "Installing tmuxline"
 printf "\n--------------------\n"
 git clone https://github.com/edkolev/tmuxline.vim.git ~/.vim/pack/plugins/start/tmuxline
-vim +TmuxlineSnapshot\ .tmuxline.conf +qall # Might need to run this again after putting .vimrc in place
+vim +TmuxlineSnapshot\!\ .tmuxline.conf +qall # Might need to run this again after putting .vimrc in place
 
 printf "\n--------------------\n"
 printf "Installing postgreSQL"
