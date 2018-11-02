@@ -449,3 +449,4 @@ wget -O ~/.vimrc - https://raw.githubusercontent.com/cochran-at-niche/home/maste
 wget -O ~/.bashrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.bashrc
 wget -O ~/.profile - https://raw.githubusercontent.com/cochran-at-niche/home/master/.profile
 wget -O ~/.tmux.conf - https://raw.githubusercontent.com/cochran-at-niche/home/master/.tmux.conf
+wget -O ~/.tmuxline.conf - https://raw.githubusercontent.com/cochran-at-niche/home/master/.tmuxline.conf
