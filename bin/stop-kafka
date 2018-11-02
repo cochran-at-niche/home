@@ -1,4 +1,4 @@
 #!/bin/bash
 
-~/kafka/bin/kafka-server-stop.sh
+~/kafka/bin/kafka-server-stop.sh && sleep 6
 ~/kafka/bin/zookeeper-server-stop.sh
