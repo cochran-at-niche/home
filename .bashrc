@@ -231,3 +231,10 @@ export PATH="$PATH:$HOME/kafka/bin"
 export QTDIR="$HOME/Qt5.11.2/5.11.2/gcc_64"
 export PATH="$QTDIR/bin:$PATH"
 export LD_LIBRARY_PATH="$QTDIR/lib:$LD_LIBRARY_PATH"
+
+# Source .env file
+if [ -f ~/.env ]; then
+    set -a
+    . ~/.env
+    set +a
+fi
