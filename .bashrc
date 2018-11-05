@@ -220,9 +220,6 @@ export GO111MODULE="on"
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# added by travis gem
-# [ -f /home/nathan/.travis/travis.sh ] && source /home/nathan/.travis/travis.sh
-
 # Add Kafka bin to PATH
 export PATH="$PATH:$HOME/kafka/bin"
 
