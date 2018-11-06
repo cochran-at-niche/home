@@ -361,12 +361,14 @@ go_projects=(					# May need to add/remove projects
         detail-management
         dynamic-fact-transporter
         dynamic-list-transporter
+        editorial
         enliten
         entity
         entity-transporter
         fact
         fact-transporter
         featured
+        global-nav
         go-common
         grade
         hydration
@@ -375,10 +377,11 @@ go_projects=(					# May need to add/remove projects
         legacy-new-world
         list
         loadtest
-        map
         mail
-        mock-service
+        map
         metadata
+        mock-service
+        partner
         photo
         photo-uploader
         premium
