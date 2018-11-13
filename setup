@@ -157,6 +157,12 @@ printf "\n--------------------\n"
 git clone https://github.com/tpope/vim-repeat.git ~/.vim/pack/plugins/start/vim-repeat
 
 printf "\n--------------------\n"
+printf "Installing ultisnips"
+printf "\n--------------------\n"
+
+git clone https://github.com/sirver/ultisnips ~/.vim/pack/plugins/start/ultisnips
+
+printf "\n--------------------\n"
 printf "Installing vim-dadbod"
 printf "\n--------------------\n"
 
