@@ -244,6 +244,20 @@ wget -P ~/Downloads https://dbeaver.jkiss.org/files/dbeaver-ce_latest_amd64.deb 
 sudo apt-get install ~/Downloads/dbeaver-ce_latest_amd64.deb
 
 printf "\n--------------------\n"
+printf "Installing docker"
+printf "\n--------------------\n"
+# See: https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
+# And: https://docs.docker.com/install/linux/linux-postinstall/
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+wget -q -O - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+# sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo systemctl enable docker
+
+printf "\n--------------------\n"
 printf "Installing kafka"
 printf "\n--------------------\n"
 wget -P ~/Downloads http://us.mirrors.quenda.co/apache/kafka/1.1.1/kafka_2.11-1.1.1.tgz
