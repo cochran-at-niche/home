@@ -258,6 +258,13 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker
 
 printf "\n--------------------\n"
+printf "Installing docker-compose"
+printf "\n--------------------\n"
+# See: https://docs.docker.com/compose/install/#install-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.23.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
+sudo chmod +x /usr/local/bin/docker-compose
+
+printf "\n--------------------\n"
 printf "Installing kafka"
 printf "\n--------------------\n"
 wget -P ~/Downloads http://us.mirrors.quenda.co/apache/kafka/1.1.1/kafka_2.11-1.1.1.tgz
