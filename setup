@@ -206,8 +206,8 @@ line='deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main'
 file='/etc/apt/sources.list.d/pgdg.list'
 grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
 sudo apt-get update
-sudo apt-get install postgresql-9.6 		# May need to update version number
-sudo apt-get install postgresql-contrib-9.6
+sudo apt-get install postgresql-10 		# May need to update version number
+sudo apt-get install postgresql-contrib-10
 
 echo -n "Please enter password for default postgres user: "
 read password
