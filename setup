@@ -55,6 +55,7 @@ echo -n "Please enter your email (for git config): "
 read email
 git config --global user.email "$email"
 git config --global core.editor vim		    # If you don't want vim, change this to your preferred editor
+git config --global url.ssh://git@github.com/.insteadOf https://github.com/ # Use ssh instead of https
 
 git config --global alias.co "checkout"     # If you don't want these git aliases, comment them out
 git config --global alias.b "branch"
