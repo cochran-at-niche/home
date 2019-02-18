@@ -5,7 +5,8 @@ set -e
 db=${1}
 src=${2:-"postgres://postgres@devvm-postgres:5432"}
 dst=${3:-"postgres://postgres@localhost:5433"}
-file="${db}_$(date +%Y-%m-%d).backup"
+dir="${HOME}/sqlBackups"
+file="${dir}/${db}_$(date +%Y-%m-%d).backup"
 
 echo "Dumping ${src}/${db} to ${file}"
 pg_dump --dbname="${src}/${db}" --format="custom" --blobs --file="${file}"
