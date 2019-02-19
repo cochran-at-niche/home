@@ -1,21 +1,62 @@
 #!/bin/bash
 
+# Usage:
+#   dump-restore dbname [source-URI] [destination-URI]
+#
+# Use this in conjunction with a ~/.pgpass file in order to avoid having to
+# provide source/destination connection strings with passwords every time
+# See: https://www.postgresql.org/docs/10/libpq-pgpass.html
+
+# Stop on first error
 set -e
 
+# CLI arguments: database name, source URI, destination URI
+# NOTE: passwords should be stored in your local .pgpass file!
 db=${1}
 src=${2:-"postgres://postgres@devvm-postgres:5432"}
 dst=${3:-"postgres://postgres@localhost:5433"}
-dir="${HOME}/sqlBackups"
-file="${dir}/${db}_$(date +%Y-%m-%d).backup"
 
-echo "Dumping ${src}/${db} to ${file}"
-pg_dump --dbname="${src}/${db}" --format="custom" --blobs --file="${file}"
+# Local directory to store backups in (feel free to change this)
+dir="${HOME}/backups"
 
+# Backup filename
+file="${db}_$(date +%Y-%m-%d).backup"
+
+# Verify dbname argument was provided
+if [ -z "$1" ]; then
+    echo "At least one argument (the name of the db to dump/restore) is required"
+    echo "Usage: dump-restore dbname [source-URI] [destination-URI]"
+    exit 1
+fi
+
+# Dump source database
+echo "Dumping ${src}/${db} to ${dir}/${file}"
+docker run --rm \
+    --volume="${dir}:/home/backups" \
+    --volume="$HOME/.pgpass:/home/.pgpass:ro" \
+    --network="host" \
+    --env="PGPASSFILE=/home/.pgpass" \
+    postgres:10.6-alpine \
+    pg_dump --dbname="${src}/${db}" --format="custom" --blobs --file="/home/backups/${file}"
+
+# Kill connections to destination db
 echo "Killing connections to ${dst}/${db}"
-psql ${dst} --command="SELECT pg_terminate_backend(pg_stat_activity.pid)
-                        FROM pg_stat_activity
-                        WHERE pg_stat_activity.datname = '${db}'
-                        AND pid <> pg_backend_pid();" 1>/dev/null
+docker run --rm \
+    --volume="$HOME/.pgpass:/home/.pgpass:ro" \
+    --network="host" \
+    --env="PGPASSFILE=/home/.pgpass" \
+    postgres:10.6-alpine \
+    psql ${dst} --no-password --command="SELECT pg_terminate_backend(pg_stat_activity.pid)
+                                            FROM pg_stat_activity
+                                            WHERE pg_stat_activity.datname = '${db}'
+                                            AND pid <> pg_backend_pid();" 1>/dev/null
 
-echo "Restoring ${file} to ${dst}/${db}"
-pg_restore --dbname="${dst}" --format="custom" --create --clean "${file}"
+# Restore database to destination db, removing existing database first
+echo "Restoring ${dir}/${file} to ${dst}/${db}"
+docker run --rm \
+    --volume="${dir}:/home/backups" \
+    --volume="$HOME/.pgpass:/home/.pgpass:ro" \
+    --network="host" \
+    --env="PGPASSFILE=/home/.pgpass" \
+    postgres:10.6-alpine \
+    pg_restore --dbname="${dst}" --format="custom" --create --clean "/home/backups/${file}"
