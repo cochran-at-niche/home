@@ -1,10 +1,15 @@
 #!/bin/bash
 
 # Usage:
-#   dump-restore dbname [source-URI] [destination-URI]
+#   dump-restore database [source-URI] [destination-URI]
+#
+# The default source-URI is devvm-postgres, and the default destination URI
+# is the instance of postgres running inside of docker. However, any other
+# postgres server URI should work (do not include the database in the URI).
 #
 # Use this in conjunction with a ~/.pgpass file in order to avoid having to
-# provide source/destination connection strings with passwords every time
+# provide passwords every time (which means you can rely on the default
+# URIs, which intentionally do not include passwords)
 # See: https://www.postgresql.org/docs/10/libpq-pgpass.html
 
 # Stop on first error
@@ -20,12 +25,12 @@ dst=${3:-"postgres://postgres@localhost:5433"}
 dir="${HOME}/backups"
 
 # Backup filename
-file="${db}_$(date +%Y-%m-%d).backup"
+file="${db}_$(date +%Y-%m-%d_%H:%M:%S).backup"
 
-# Verify dbname argument was provided
+# Verify database argument was provided
 if [ -z "$1" ]; then
     echo "At least one argument (the name of the db to dump/restore) is required"
-    echo "Usage: dump-restore dbname [source-URI] [destination-URI]"
+    echo "Usage: dump-restore database [source-URI] [destination-URI]"
     exit 1
 fi
 
