@@ -41,9 +41,10 @@ sudo apt-get install git-all
 printf "\n--------------------\n"
 printf "Installing tmux"
 printf "\n--------------------\n"
-sudo add-apt-repository ppa:pi-rho/dev
-sudo apt-get update
-sudo apt-get install tmux-next
+sudo apt-get install tmux
+#sudo add-apt-repository ppa:pi-rho/dev
+#sudo apt-get update
+#sudo apt-get install tmux-next
 
 printf "\n--------------------\n"
 printf "Configuring git"
@@ -56,10 +57,13 @@ read email
 git config --global user.email "$email"
 git config --global core.editor vim		    # If you don't want vim, change this to your preferred editor
 git config --global url.ssh://git@github.com/.insteadOf https://github.com/ # Use ssh instead of https
+git config --global url.ssh://git@gitlab.com/.insteadOf https://gitlab.com/ # Use ssh instead of https
 
 git config --global alias.co "checkout"     # If you don't want these git aliases, comment them out
 git config --global alias.b "branch"
 git config --global alias.st "status"
+git config --global alias.su "submodule update"
+git config --global alias.sur "submodule update --remote"
 git config --global alias.rso "remote show origin"
 git config --global alias.rpo "remote prune origin"
 git config --global alias.rao "remote add origin"
@@ -185,22 +189,22 @@ printf "\n--------------------\n"
 printf "Installing tmuxline"
 printf "\n--------------------\n"
 git clone https://github.com/edkolev/tmuxline.vim.git ~/.vim/pack/plugins/start/tmuxline
-vim +TmuxlineSnapshot\!\ .tmuxline.conf +qall # Might need to run this again after putting .vimrc in place
+# vim +TmuxlineSnapshot\!\ .tmuxline.conf +qall # Might need to run this again after putting .vimrc in place
 
-printf "\n--------------------\n"
-printf "Installing postgreSQL"
-printf "\n--------------------\n"
-wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - # See: https://www.postgresql.org/download/linux/ubuntu/
-line='deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main'
-file='/etc/apt/sources.list.d/pgdg.list'
-grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
-sudo apt-get update
-sudo apt-get install postgresql-10 		# May need to update version number
-sudo apt-get install postgresql-contrib-10
-
-echo -n "Please enter password for default postgres user: "
-read password
-sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$password'"
+#printf "\n--------------------\n"
+#printf "Installing postgreSQL"
+#printf "\n--------------------\n"
+#wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - # See: https://www.postgresql.org/download/linux/ubuntu/
+#line='deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main'
+#file='/etc/apt/sources.list.d/pgdg.list'
+#grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
+#sudo apt-get update
+#sudo apt-get install postgresql-10 		# May need to update version number
+#sudo apt-get install postgresql-contrib-10
+#
+#echo -n "Please enter password for default postgres user: "
+#read password
+#sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$password'"
 
 # Create postgres user with same name as operating system user (makes
 # local login via IDENT authentication possible - in pgAdminIII, you must
@@ -237,12 +241,12 @@ printf "Installing docker"
 printf "\n--------------------\n"
 # See: https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 # And: https://docs.docker.com/install/linux/linux-postinstall/
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 wget -q -O - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get update
-sudo apt-get install docker-ce
-# sudo groupadd docker
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 
@@ -306,9 +310,7 @@ printf "Installing shutter"
 printf "\n--------------------\n"
 sudo add-apt-repository ppa:shutter/ppa
 sudo apt-get update
-sudo apt-get install shutter
-sudo apt-get install libgoo-canvas-perl # Enables editing screenshots
-sudo apt-get install gnome-web-photo    # Enables capturing web pages
+sudo apt-get install shutter libgoo-canvas-perl gnome-web-photo # Enables editing screenshots and capturing web pages
 
 printf "\n--------------------\n"
 printf "Installing peek"
@@ -340,11 +342,11 @@ go get -u github.com/github/hub
 #sudo pip install --upgrade pip 
 #sudo pip install --upgrade virtualenv 
 
-printf "\n--------------------\n"
-printf "Installing grip"
-printf "\n--------------------\n"
-sudo pip install setuptools
-sudo pip install grip
+#printf "\n--------------------\n"
+#printf "Installing grip"
+#printf "\n--------------------\n"
+#sudo pip install setuptools
+#sudo pip install grip
 
 #printf "\n--------------------\n"
 #printf "Installing google-cloud-sdk"
@@ -380,7 +382,7 @@ printf "Installing github.com/nicheinc/development"
 printf "\n--------------------\n"
 git clone --recurse-submodules https://github.com/nicheinc/development ~/src/github.com/nicheinc/development/
 
-# Create symbolic link in home directory to development directory
+# Create symbolic links in home directory to niche and development directories
 ln -s ~/src/github.com/nicheinc
 ln -s ~/src/github.com/nicheinc/development
 
