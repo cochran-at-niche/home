@@ -67,37 +67,25 @@ git config --global alias.d "diff"
 git config --global alias.dc "diff --cached"
 git config --global alias.lg "log --all --decorate --oneline --graph"
 
-printf "\n--------------------\n"
-printf "Installing libsecret (git credential helper)"
-printf "\n--------------------\n"
-sudo apt-get install libsecret-1-0 libsecret-1-dev
-sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
-git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret 
-# git config --global credential.helper cache	# If you don't want credentials to be stored permanently, use this instead
+#printf "\n--------------------\n"
+#printf "Installing libsecret (git credential helper)"
+#printf "\n--------------------\n"
+#sudo apt-get install libsecret-1-0 libsecret-1-dev
+#sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
+#git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret 
+## git config --global credential.helper cache	# If you don't want credentials to be stored permanently, use this instead
 
 printf "\n--------------------\n"
 printf "Installing go"
 printf "\n--------------------\n"
-wget -P ~/Downloads https://dl.google.com/go/go1.11.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf ~/Downloads/go1.11.linux-amd64.tar.gz
-mkdir ~/go ~/go/bin ~/go/pkg ~/go/src   # If you want your go workspace in a non-standard location, change this
+wget -P ~/Downloads https://dl.google.com/go/go1.11.5.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf ~/Downloads/go1.11.5.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin     # Not permament unless set in $HOME/.profile, but necessary for :GoInstallBinaries to work (see below)
-# export GOPATH=~/go 			        # Not necessary unless go workspace is in a non-standard location
 
 printf "\n--------------------\n"
 printf "Installing golang.org/x/tools"
 printf "\n--------------------\n"
 go get -u golang.org/x/tools/...
-
-printf "\n--------------------\n"
-printf "Installing govendor"
-printf "\n--------------------\n"
-go get -u github.com/kardianos/govendor
-
-printf "\n--------------------\n"
-printf "Installing dep"
-printf "\n--------------------\n"
-go get -u github.com/golang/dep/cmd/dep
 
 printf "\n--------------------\n"
 printf "Installing graphviz"
@@ -223,20 +211,20 @@ sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$password'"
 #user=$USER
 #sudo -u postgres createuser -s $user    
 
-printf "\n--------------------\n"
-printf "Installing pgAdmin"
-printf "\n--------------------\n"
-sudo apt-get install pgadmin3			# People seem to prefer pgadmin3 over pgadmin4
+#printf "\n--------------------\n"
+#printf "Installing pgAdmin"
+#printf "\n--------------------\n"
+#sudo apt-get install pgadmin3			# People seem to prefer pgadmin3 over pgadmin4
 
-printf "\n--------------------\n"
-printf "Installing mssql-tools"
-printf "\n--------------------\n"
-wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-line=$(wget -q -O - https://packages.microsoft.com/config/ubuntu/16.04/prod.list)
-file='/etc/apt/sources.list.d/msprod.list'
-grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
-sudo apt-get update 
-sudo apt-get install mssql-tools unixodbc-dev
+#printf "\n--------------------\n"
+#printf "Installing mssql-tools"
+#printf "\n--------------------\n"
+#wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+#line=$(wget -q -O - https://packages.microsoft.com/config/ubuntu/16.04/prod.list)
+#file='/etc/apt/sources.list.d/msprod.list'
+#grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
+#sudo apt-get update 
+#sudo apt-get install mssql-tools unixodbc-dev
 
 printf "\n--------------------\n"
 printf "Installing dbeaver"
@@ -262,15 +250,15 @@ printf "\n--------------------\n"
 printf "Installing docker-compose"
 printf "\n--------------------\n"
 # See: https://docs.docker.com/compose/install/#install-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.23.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
+sudo curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
 sudo chmod +x /usr/local/bin/docker-compose
 
-printf "\n--------------------\n"
-printf "Installing kafka"
-printf "\n--------------------\n"
-wget -P ~/Downloads http://us.mirrors.quenda.co/apache/kafka/1.1.1/kafka_2.11-1.1.1.tgz
-tar -xvzf ~/Downloads/kafka_2.11-1.0.0.tgz -C ~/
-mv ~/kafka_2.11-1.0.0 ~/kafka
+# printf "\n--------------------\n"
+# printf "Installing kafka"
+# printf "\n--------------------\n"
+# wget -P ~/Downloads http://us.mirrors.quenda.co/apache/kafka/1.1.1/kafka_2.11-1.1.1.tgz
+# tar -xvzf ~/Downloads/kafka_2.11-1.0.0.tgz -C ~/
+# mv ~/kafka_2.11-1.0.0 ~/kafka
 
 printf "\n--------------------\n"
 printf "Installing firefox"    
@@ -299,12 +287,18 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 printf "\n--------------------\n"
 printf "Installing slack"
 printf "\n--------------------\n"
-wget -P ~/Downloads https://downloads.slack-edge.com/linux_releases/slack-desktop-2.8.0-amd64.deb # May need to update version number (visit slack download page to find it)
-sudo apt-get install ~/Downloads/slack-desktop-2.8.0-amd64.deb
+wget -P ~/Downloads https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.7-amd64.deb # May need to update version number (visit slack download page to find it)
+sudo apt-get install ~/Downloads/slack-desktop-3.3.7-amd64.deb
 
 printf "\n--------------------\n"
 printf "Installing spotify"
 printf "\n--------------------\n"
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+sudo tee /etc/apt/sources.list.d/spotify.list
+line='deb http://repository.spotify.com stable non-free'
+file='/etc/apt/sources.list.d/spotify.list'
+grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
+sudo apt-get update
 sudo apt-get install spotify-client
 
 printf "\n--------------------\n"
@@ -331,20 +325,20 @@ sudo apt-get install inotify-tools
 printf "\n--------------------\n"
 printf "Installing hub"
 printf "\n--------------------\n"
-go get github.com/github/hub
+go get -u github.com/github/hub
 
-printf "\n--------------------\n"
-printf "Installing rvm and ruby 2.3.4"
-printf "\n--------------------\n"
-sudo gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-sudo curl -sSL https://get.rvm.io | sudo bash -s stable --ruby=2.3.4
+#printf "\n--------------------\n"
+#printf "Installing rvm and ruby 2.3.4"
+#printf "\n--------------------\n"
+#sudo gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+#sudo curl -sSL https://get.rvm.io | sudo bash -s stable --ruby=2.3.4
 
-printf "\n--------------------\n"
-printf "Installing pip and virtualenv"
-printf "\n--------------------\n"
-sudo apt-get install python-pip python-dev build-essential 
-sudo pip install --upgrade pip 
-sudo pip install --upgrade virtualenv 
+#printf "\n--------------------\n"
+#printf "Installing pip and virtualenv"
+#printf "\n--------------------\n"
+#sudo apt-get install python-pip python-dev build-essential 
+#sudo pip install --upgrade pip 
+#sudo pip install --upgrade virtualenv 
 
 printf "\n--------------------\n"
 printf "Installing grip"
@@ -352,120 +346,66 @@ printf "\n--------------------\n"
 sudo pip install setuptools
 sudo pip install grip
 
-printf "\n--------------------\n"
-printf "Installing google-cloud-sdk"
-printf "\n--------------------\n"
-wget -P ~/Downloads https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-180.0.0-linux-x86_64.tar.gz
-tar -xvzf ~/Downloads/google-cloud-sdk-180.0.0-linux-x86_64.tar.gz -C ~/
-~/google-cloud-sdk/install.sh
-~/google-cloud-sdk/bin/gcloud init
-~/google-cloud-sdk/bin/gcloud components install app-engine-go
-~/google-cloud-sdk/bin/gcloud components update
+#printf "\n--------------------\n"
+#printf "Installing google-cloud-sdk"
+#printf "\n--------------------\n"
+#wget -P ~/Downloads https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-180.0.0-linux-x86_64.tar.gz
+#tar -xvzf ~/Downloads/google-cloud-sdk-180.0.0-linux-x86_64.tar.gz -C ~/
+#~/google-cloud-sdk/install.sh
+#~/google-cloud-sdk/bin/gcloud init
+#~/google-cloud-sdk/bin/gcloud components install app-engine-go
+#~/google-cloud-sdk/bin/gcloud components update
 
-printf "\n--------------------\n"
-printf "Installing VirtualBox"
-printf "\n--------------------\n"
-wget -P ~/Downloads https://download.virtualbox.org/virtualbox/5.2.20/virtualbox-5.2_5.2.20-125813~Ubuntu~xenial_amd64.deb # May need to update at some point (visit VirtualBox download page to find link)
-sudo apt-get install ~/Downloads/virtualbox-5.2_5.2.20-125813~Ubuntu~xenial_amd64.deb
+#printf "\n--------------------\n"
+#printf "Installing VirtualBox"
+#printf "\n--------------------\n"
+#wget -P ~/Downloads https://download.virtualbox.org/virtualbox/5.2.20/virtualbox-5.2_5.2.20-125813~Ubuntu~xenial_amd64.deb # May need to update at some point (visit VirtualBox download page to find link)
+#sudo apt-get install ~/Downloads/virtualbox-5.2_5.2.20-125813~Ubuntu~xenial_amd64.deb
 
-printf "\n--------------------\n"
-printf "Installing VirtualBox Extension Pack"
-printf "\n--------------------\n"
-wget -P ~/Downloads https://download.virtualbox.org/virtualbox/5.2.14/Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
-virtualbox ~/Downloads/Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
+#printf "\n--------------------\n"
+#printf "Installing VirtualBox Extension Pack"
+#printf "\n--------------------\n"
+#wget -P ~/Downloads https://download.virtualbox.org/virtualbox/5.2.14/Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
+#virtualbox ~/Downloads/Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
 
-printf "\n--------------------\n"
-printf "Installing Vagrant"
-printf "\n--------------------\n"
-wget -P ~/Downloads https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.deb
-sudo apt-get install ~/Downloads/vagrant_2.1.2_x86_64.deb
-
-go_projects=(					# May need to add/remove projects
-        account
-        algolia-indexer
-        auth
-        backpack
-        data-transfer
-        detail-management
-        dynamic-fact-transporter
-        dynamic-list-transporter
-        editorial
-        enliten
-        entity
-        entity-transporter
-        fact
-        fact-transporter
-        featured
-        global-nav
-        go-common
-        grade
-        hydration
-        juice
-        lead
-        legacy-new-world
-        list
-        loadtest
-        mail
-        map
-        metadata
-        mock-service
-        partner
-        photo
-        photo-uploader
-        premium
-        profile
-        qprof
-        realtorcomlocator
-        scatterplot
-        scatterplot-transporter
-        scholarship
-        scholarship-deadliner
-        scholarship-indexer
-        search
-        survey
-        urlinator
-)
+#printf "\n--------------------\n"
+#printf "Installing Vagrant"
+#printf "\n--------------------\n"
+#wget -P ~/Downloads https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.deb
+#sudo apt-get install ~/Downloads/vagrant_2.1.2_x86_64.deb
 
 export GIT_TERMINAL_PROMPT=1			# So git will prompt for credentials, instead of failing
-for go_project in "${go_projects[@]}"; do
-	printf "\n--------------------\n"
-	printf "Installing $go_project"
-	printf "\n--------------------\n"
-	go get -u -v "github.com/nicheinc/$go_project"
-done
+printf "\n--------------------\n"
+printf "Installing github.com/nicheinc/development"
+printf "\n--------------------\n"
+git clone --recurse-submodules https://github.com/nicheinc/development ~/src/github.com/nicheinc/development/
 
-# Create symbolic link in home directory to nicheinc directory
-ln -s ~/go/src/github.com/nicheinc/
+# Create symbolic link in home directory to development directory
+ln -s ~/src/github.com/nicheinc
+ln -s ~/src/github.com/nicheinc/development
 
-printf "\n--------------------\n"
-printf "Installing nvm"
-printf "\n--------------------\n"
-wget -q -O - https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash # May need to update version number
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#printf "\n--------------------\n"
+#printf "Installing nvm"
+#printf "\n--------------------\n"
+#wget -q -O - https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash # May need to update version number
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-printf "\n--------------------\n"
-printf "Installing node.js"
-printf "\n--------------------\n"
-nvm install 6.11.2
+#printf "\n--------------------\n"
+#printf "Installing node.js"
+#printf "\n--------------------\n"
+#nvm install 6.11.2
 
-printf "\n--------------------\n"
-printf "Installing nodemon"
-printf "\n--------------------\n"
-npm install -g nodemon
+#printf "\n--------------------\n"
+#printf "Installing nodemon"
+#printf "\n--------------------\n"
+#npm install -g nodemon
 
-printf "\n--------------------\n"
-printf "Installing doctoc"
-printf "\n--------------------\n"
-npm install -g doctoc
-
-printf "\n--------------------\n"
-printf "Installing Website"
-printf "\n--------------------\n"
-mkdir ~/js					# If you want the Website code to live in a different directory, change this
-cd ~/js
-git clone https://github.com/nicheinc/Website.git
+#printf "\n--------------------\n"
+#printf "Installing doctoc"
+#printf "\n--------------------\n"
+#npm install -g doctoc
 
 if [ ! -f ~/.ssh/id_rsa ]; then
 	# See: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
@@ -475,17 +415,13 @@ if [ ! -f ~/.ssh/id_rsa ]; then
 	ssh-add ~/.ssh/id_rsa
 	sudo apt-get install xclip
 	xclip -sel clip < ~/.ssh/id_rsa.pub
-	google-chrome https://github.com/settings/keys
+    firefox https://github.com/settings/keys
 	printf "\n--------------------\n"
 	printf "NOTE: Please log in to github.com, click 'New SSH Key', and paste into the 'Key' textbox (the ssh key has already been copied to your clipboard)\n"
 	printf "NOTE: You may give the key any descriptive name you want (e.g. niche-linux)\n"
 	printf "NOTE: Once finished, press [Enter] to continue"
 	read -s
 fi
-
-cd ~/js/Website
-npm install
-# npm run dev 					# This would run webpack, but webpack is in watch mode by default in dev, due to webpack.config.json, so it would hang indefinately :/
 
 printf "\n--------------------\n"
 printf "Cleaning up unused dependencies"

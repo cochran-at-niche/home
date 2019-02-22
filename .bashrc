@@ -167,11 +167,11 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
-# node/nvm setup:
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+## node/nvm setup:
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#
 # google-cloud-sdk tools/command completion
 if [ -e $HOME/google-cloud-sdk/completion.bash.inc ]; then
     . $HOME/google-cloud-sdk/completion.bash.inc
@@ -180,54 +180,28 @@ if [ -e $HOME/google-cloud-sdk/path.bash.inc ]; then
     . $HOME/google-cloud-sdk/path.bash.inc
 fi
 
-# note-taking function (see: https://dev.to/ricardomol/note-taking-from-the-command-line-156):
-note() {
-    if [ ! -z "$1" ]; then
-        if [ $1 = "-d" ] && [[ $2 =~ ^[0-9]+$ ]]; then
-            # If argument is -d followed by a number,
-            # then delete that line from the notes file
-            sed -i -e "$2d" "$HOME/notes.md"
-        else
-            # Using the "$@" here will take all parameters passed into
-            # this function so we can place everything into our file.
-            echo "$@" >> "$HOME/notes.md"
-        fi
-    else
-        if [ ! -t 0 ]; then
-            # If no arguments were passed, and stdin is not a terminal
-            # (i.e. it's a pipe or redirect), use that:
-            cat - >> "$HOME/notes.md"
-        else
-            # Otherwise, output the notes:
-            if [ -e "$HOME/notes.md" ]; then
-                cat "$HOME/notes.md"
-            fi
-        fi
-    fi
-}
-
 # set PATH so it includes user's private bin directories:
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # set PATH so it includes mssql tools:
-export PATH="/opt/mssql-tools/bin:$PATH"
+# export PATH="/opt/mssql-tools/bin:$PATH"
 
 # set up go env variables:
-export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
-export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+# export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
 export GO111MODULE="on"
 
 # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add Kafka bin to PATH
-export PATH="$PATH:$HOME/kafka/bin"
+# export PATH="$PATH:$HOME/kafka/bin"
 
 # qt stuff for citra emulator
 # https://github.com/citra-emu/citra/wiki/Building-For-Linux
-export QTDIR="$HOME/Qt5.11.2/5.11.2/gcc_64"
-export PATH="$QTDIR/bin:$PATH"
-export LD_LIBRARY_PATH="$QTDIR/lib:$LD_LIBRARY_PATH"
+# export QTDIR="$HOME/Qt5.11.2/5.11.2/gcc_64"
+# export PATH="$QTDIR/bin:$PATH"
+# export LD_LIBRARY_PATH="$QTDIR/lib:$LD_LIBRARY_PATH"
 
 # Source .env file
 if [ -f ~/.env ]; then
