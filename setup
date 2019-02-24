@@ -224,11 +224,11 @@ sudo systemctl restart network-manager
 #sudo apt-get update 
 #sudo apt-get install mssql-tools unixodbc-dev
 
-#printf "\n--------------------\n"
-#printf "Installing dbeaver"
-#printf "\n--------------------\n"
-#wget -P ~/Downloads https://dbeaver.jkiss.org/files/dbeaver-ce_latest_amd64.deb # May need to update at some point (visit dbeaver download page to find link)
-#sudo apt-get install ~/Downloads/dbeaver-ce_latest_amd64.deb
+printf "\n--------------------\n"
+printf "Installing dbeaver"
+printf "\n--------------------\n"
+wget -P ~/Downloads https://dbeaver.jkiss.org/files/dbeaver-ce_latest_amd64.deb # May need to update at some point (visit dbeaver download page to find link)
+sudo apt-get install ~/Downloads/dbeaver-ce_latest_amd64.deb
 
 printf "\n--------------------\n"
 printf "Installing docker"
