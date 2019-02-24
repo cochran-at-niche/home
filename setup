@@ -400,6 +400,9 @@ ln -s ~/src/github.com/nicheinc/development
 
 if [ ! -f ~/.ssh/id_rsa ]; then
 	# See: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+    # NOTE: If you have multiple github accounts, and you want to use ssh for both of them,
+    # you will have to run the following commnds twice, creating two different ssh keys. See
+    # my .gitconfig and .ssh/config to see how to correctly configure the rest from there.
 	printf "Generating ssh key required for github.com/nicheinc dependencies\n"
 	ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa -N ''
 	eval "$(ssh-agent -s)"
