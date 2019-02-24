@@ -179,6 +179,12 @@ printf "\n--------------------\n"
 git clone https://github.com/edkolev/tmuxline.vim.git ~/.vim/pack/plugins/start/tmuxline
 # vim +TmuxlineSnapshot\!\ .tmuxline.conf +qall     # Only necessary if not pulling down existing .tmuxline.conf
 
+printf "\n--------------------\n"
+printf "Installing network-manager-l2tp"
+printf "\n--------------------\n"
+sudo apt install network-manager-l2tp network-manager-l2tp-gnome
+sudo systemctl restart network-manager
+
 #printf "\n--------------------\n"
 #printf "Installing postgreSQL"
 #printf "\n--------------------\n"
