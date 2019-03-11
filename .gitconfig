@@ -1,0 +1,25 @@
+[user]
+	name = Nathaniel J Cochran
+	email = nathanjcochran@gmail.com
+[url "ssh://git@niche.github.com/cochran-at-niche"]
+	insteadOf = https://github.com/cochran-at-niche
+[url "ssh://git@niche.github.com/nicheinc"]
+	insteadOf = https://github.com/nicheinc
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
+[url "ssh://git@gitlab.com"]
+    insteadOf = https://gitlab.com
+[alias]
+	co = checkout
+	b = branch
+	st = status
+	su = submodule update
+	sur = submodule update --remote
+	rso = remote show origin
+	rpo = remote prune origin
+	rao = remote add origin
+	d = diff
+	dc = diff --cached
+	lg = log --all --decorate --oneline --graph
+[credential]
+	helper = cache

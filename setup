@@ -5,10 +5,9 @@
 # running it, you should read it, understand it, and tweak it as necessary.
 # It is liable to fall out-of-date, and has some idiosyncatic configuration
 # options that you might not want (such as setting vim as your default editor
-# for git). It was tested with Linux Mint 18.2 (which is based on Ubuntu 16.04)
-# on 9/19/2017. It should be relatively safe to run multiple times in a row,
-# although some commands will fail if, for example, certain directories and
-# programs already exist.
+# for git). It was tested with Ubuntu MATE 18.10 on 2/23/2019. It should be
+# relatively safe to run multiple times in a row, although some commands will
+# fail if, for example, certain directories and programs already exist.
 # Author: Nathan J Cochran
 
 if (( $(id -u) == 0 )); then
@@ -36,15 +35,10 @@ sudo add-apt-repository ppa:git-core/ppa	# More up-to-date than the default prov
 sudo apt-get update
 sudo apt-get install git-all
 
-# wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh # For git info in terminal prompt (not needed, seems to be pre-installed)
-
 printf "\n--------------------\n"
 printf "Installing tmux"
 printf "\n--------------------\n"
 sudo apt-get install tmux
-#sudo add-apt-repository ppa:pi-rho/dev
-#sudo apt-get update
-#sudo apt-get install tmux-next
 
 printf "\n--------------------\n"
 printf "Configuring git"
@@ -55,10 +49,8 @@ git config --global user.name "$name"
 echo -n "Please enter your email (for git config): "
 read email
 git config --global user.email "$email"
-git config --global core.editor vim		    # If you don't want vim, change this to your preferred editor
-git config --global url.ssh://git@github.com/.insteadOf https://github.com/ # Use ssh instead of https
-git config --global url.ssh://git@gitlab.com/.insteadOf https://gitlab.com/ # Use ssh instead of https
-
+git config --global core.editor "vim"		    # If you don't want vim, change this to your preferred editor
+git config --global credential.helper "cache"
 git config --global alias.co "checkout"     # If you don't want these git aliases, comment them out
 git config --global alias.b "branch"
 git config --global alias.st "status"
@@ -70,14 +62,6 @@ git config --global alias.rao "remote add origin"
 git config --global alias.d "diff"
 git config --global alias.dc "diff --cached"
 git config --global alias.lg "log --all --decorate --oneline --graph"
-
-#printf "\n--------------------\n"
-#printf "Installing libsecret (git credential helper)"
-#printf "\n--------------------\n"
-#sudo apt-get install libsecret-1-0 libsecret-1-dev
-#sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
-#git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret 
-## git config --global credential.helper cache	# If you don't want credentials to be stored permanently, use this instead
 
 printf "\n--------------------\n"
 printf "Installing go"
@@ -165,7 +149,6 @@ vim -u NONE -c "helptags ~/.vim/pack/plugins/start/vim-dadbod/doc" -c q
 printf "\n--------------------\n"
 printf "Installing vim-airline"
 printf "\n--------------------\n"
-
 git clone https://github.com/vim-airline/vim-airline.git ~/.vim/pack/plugins/start/vim-airline
 git clone https://github.com/nathanjcochran/vim-airline-themes ~/.vim/pack/plugins/start/vim-airline-themes
 
@@ -173,6 +156,11 @@ printf "\n--------------------\n"
 printf "Installing vim-colors-solarized"
 printf "\n--------------------\n"
 git clone https://github.com/altercation/vim-colors-solarized.git ./.vim/pack/plugins/start/vim-colors-solarized
+
+printf "\n--------------------\n"
+printf "Installing gnome terminal"
+printf "\n--------------------\n"
+sudo apt-get install gnome-terminal         # You will want to update your default terminal
 
 printf "\n--------------------\n"
 printf "Installing gnome terminal solarized"
@@ -189,7 +177,13 @@ printf "\n--------------------\n"
 printf "Installing tmuxline"
 printf "\n--------------------\n"
 git clone https://github.com/edkolev/tmuxline.vim.git ~/.vim/pack/plugins/start/tmuxline
-# vim +TmuxlineSnapshot\!\ .tmuxline.conf +qall # Might need to run this again after putting .vimrc in place
+# vim +TmuxlineSnapshot\!\ .tmuxline.conf +qall     # Only necessary if not pulling down existing .tmuxline.conf
+
+printf "\n--------------------\n"
+printf "Installing network-manager-l2tp"
+printf "\n--------------------\n"
+sudo apt install network-manager-l2tp network-manager-l2tp-gnome resolvconf
+sudo systemctl restart network-manager
 
 #printf "\n--------------------\n"
 #printf "Installing postgreSQL"
@@ -201,7 +195,7 @@ git clone https://github.com/edkolev/tmuxline.vim.git ~/.vim/pack/plugins/start/
 #sudo apt-get update
 #sudo apt-get install postgresql-10 		# May need to update version number
 #sudo apt-get install postgresql-contrib-10
-#
+
 #echo -n "Please enter password for default postgres user: "
 #read password
 #sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$password'"
@@ -264,12 +258,13 @@ sudo chmod +x /usr/local/bin/docker-compose
 # tar -xvzf ~/Downloads/kafka_2.11-1.0.0.tgz -C ~/
 # mv ~/kafka_2.11-1.0.0 ~/kafka
 
-printf "\n--------------------\n"
-printf "Installing firefox"    
-printf "\n--------------------\n"
-sudo add-apt-repository ppa:mozillateam/firefox-next
-sudo apt-get update
-sudo apt install firefox
+# NOTE: Should already be installed
+#printf "\n--------------------\n"
+#printf "Installing firefox"
+#printf "\n--------------------\n"
+#sudo add-apt-repository ppa:mozillateam/firefox-next
+#sudo apt-get update
+#sudo apt install firefox
 
 printf "\n--------------------\n"
 printf "Installing chrome"    
@@ -298,26 +293,26 @@ printf "\n--------------------\n"
 printf "Installing spotify"
 printf "\n--------------------\n"
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-sudo tee /etc/apt/sources.list.d/spotify.list
 line='deb http://repository.spotify.com stable non-free'
 file='/etc/apt/sources.list.d/spotify.list'
 grep -q -F "$line" $file || sudo sh -c "echo \"$line\" >> $file" # Only add line if it doesn't already exist
 sudo apt-get update
 sudo apt-get install spotify-client
 
-printf "\n--------------------\n"
-printf "Installing shutter"
-printf "\n--------------------\n"
-sudo add-apt-repository ppa:shutter/ppa
-sudo apt-get update
-sudo apt-get install shutter libgoo-canvas-perl gnome-web-photo # Enables editing screenshots and capturing web pages
+#printf "\n--------------------\n"
+#printf "Installing shutter"
+#printf "\n--------------------\n"
+#sudo add-apt-repository ppa:shutter/ppa
+#sudo apt-get update
+#sudo apt-get install shutter libgoo-canvas-perl gnome-web-photo # Enables editing screenshots and capturing web pages
 
 printf "\n--------------------\n"
 printf "Installing peek"
 printf "\n--------------------\n"
-sudo add-apt-repository ppa:peek-developers/stable
-sudo apt-get update
 sudo apt-get install peek
+# sudo add-apt-repository ppa:peek-developers/stable
+# sudo apt-get update
+# sudo apt-get install peek
 
 printf "\n--------------------\n"
 printf "Installing inotify-tools"
@@ -376,7 +371,6 @@ go get -u github.com/github/hub
 #wget -P ~/Downloads https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.deb
 #sudo apt-get install ~/Downloads/vagrant_2.1.2_x86_64.deb
 
-export GIT_TERMINAL_PROMPT=1			# So git will prompt for credentials, instead of failing
 printf "\n--------------------\n"
 printf "Installing github.com/nicheinc/development"
 printf "\n--------------------\n"
@@ -411,6 +405,9 @@ ln -s ~/src/github.com/nicheinc/development
 
 if [ ! -f ~/.ssh/id_rsa ]; then
 	# See: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+    # NOTE: If you have multiple github accounts, and you want to use ssh for both of them,
+    # you will have to run the following commnds twice, creating two different ssh keys. See
+    # my .gitconfig and .ssh/config to see how to correctly configure the rest from there.
 	printf "Generating ssh key required for github.com/nicheinc dependencies\n"
 	ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa -N ''
 	eval "$(ssh-agent -s)"
@@ -424,6 +421,10 @@ if [ ! -f ~/.ssh/id_rsa ]; then
 	printf "NOTE: Once finished, press [Enter] to continue"
 	read -s
 fi
+
+# Use ssh instead of https by default
+git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+git config --global url.ssh://git@gitlab.com/.insteadOf https://gitlab.com/
 
 printf "\n--------------------\n"
 printf "Cleaning up unused dependencies"
@@ -441,6 +442,7 @@ printf "\n--------------------\n"
 
 wget -O ~/.vimrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.vimrc
 wget -O ~/.bashrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.bashrc
+wget -O ~/.inputrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.inputrc
 wget -O ~/.profile - https://raw.githubusercontent.com/cochran-at-niche/home/master/.profile
 wget -O ~/.tmux.conf - https://raw.githubusercontent.com/cochran-at-niche/home/master/.tmux.conf
 wget -O ~/.tmuxline.conf - https://raw.githubusercontent.com/cochran-at-niche/home/master/.tmuxline.conf

@@ -10,7 +10,7 @@ esac
 
 # Start tmux, if not already in tmux:
 if [ -z "$TMUX" ]; then
-    exec tmux-next new-session -A -s $USER
+    exec tmux new-session -A -s $USER
 fi
 
 # vi mode ftw
@@ -48,7 +48,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm|xterm-color|*-256color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -66,9 +66,6 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
-
-# Git should prompt for credentials:
-export GIT_TERMINAL_PROMPT=1
 
 # For git info in terminal prompt. See: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 # source ~/.git-prompt.sh # Not needed, seems to be pre-installed
@@ -140,9 +137,9 @@ alias j='jobs'
 alias kj='kill $(jobs -p)'
 alias postman='postman &> /dev/null'
 
-# Add an "alert" alias for long running commands. Use like so:
+# Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -164,49 +161,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -x /usr/bin/mint-fortune ]; then
-     /usr/bin/mint-fortune
-fi
-
-## node/nvm setup:
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#
-# google-cloud-sdk tools/command completion
-if [ -e $HOME/google-cloud-sdk/completion.bash.inc ]; then
-    . $HOME/google-cloud-sdk/completion.bash.inc
-fi
-if [ -e $HOME/google-cloud-sdk/path.bash.inc ]; then
-    . $HOME/google-cloud-sdk/path.bash.inc
-fi
-
-# set PATH so it includes user's private bin directories:
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-# set PATH so it includes mssql tools:
-# export PATH="/opt/mssql-tools/bin:$PATH"
-
 # set up go env variables:
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 # export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
 export GO111MODULE="on"
-
-# Add RVM to PATH for scripting
-# export PATH="$PATH:$HOME/.rvm/bin"
-
-# Add Kafka bin to PATH
-# export PATH="$PATH:$HOME/kafka/bin"
-
-# qt stuff for citra emulator
-# https://github.com/citra-emu/citra/wiki/Building-For-Linux
-# export QTDIR="$HOME/Qt5.11.2/5.11.2/gcc_64"
-# export PATH="$QTDIR/bin:$PATH"
-# export LD_LIBRARY_PATH="$QTDIR/lib:$LD_LIBRARY_PATH"
-
-# Source .env file
-if [ -f ~/.env ]; then
-    set -a
-    . ~/.env
-    set +a
-fi

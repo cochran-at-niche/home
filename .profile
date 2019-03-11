@@ -8,12 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# Reset the default path to prevent duplicate path entries when starting tmux
-# (tmux inherits the PATH from the environment that started it, which means
-# each call to a tmux command the sources .bash_profile - e.g. tmux split-window - 
-# ends up duplicating a bunch of PATH entries):
-. "/etc/environment"
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -22,7 +16,12 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
