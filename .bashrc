@@ -79,13 +79,14 @@ GIT_PS1_SHOWUPSTREAM="git auto" # behind origin <, ahead of origin >, diverged f
 GIT_PS1_DESCRIBE_STYLE="branch" # when detached head, shows commit relative to newer tag or branch (e.g. master~4)
 GIT_PS1_HIDE_IF_PWD_IGNORED=true # do nothing if current directory ignored by git
 
+PROMPT_DIRTRIM=3
 if [ "$color_prompt" = yes ]; then
     GIT_PS1_SHOWCOLORHINTS=true # dirty state and untracked file indicators are color-coded
     if [[ ${EUID} == 0 ]] ; then
-        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W'
+        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \w\[\033[00m\]'
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     else
-        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w'
+        PRE_PROMPT_COMMAND='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]'
         #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w$(__git_ps1 " (%s)")\n\$\[\033[00m\] '
     fi
     POST_PROMPT_COMMAND='\n\$\[\033[00m\] '
