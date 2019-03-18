@@ -1,0 +1,6 @@
+#!/bin/bash
+
+src=$(sed 's/[]\/$*.^[]/\\&/g' <<< ${1})
+dst=$(sed 's/[\/&]/\\&/g' <<< ${2})
+
+grep -Rl "${src}" --include=*.go --exclude-dir=vendor | xargs sed -i "s/${src}/${dst}/g"
