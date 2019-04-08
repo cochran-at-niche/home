@@ -66,8 +66,8 @@ git config --global alias.lg "log --all --decorate --oneline --graph"
 printf "\n--------------------\n"
 printf "Installing go"
 printf "\n--------------------\n"
-wget -P ~/Downloads https://dl.google.com/go/go1.11.5.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf ~/Downloads/go1.11.5.linux-amd64.tar.gz
+wget -P ~/Downloads https://dl.google.com/go/go1.12.2.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf ~/Downloads/go1.12.2.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin     # Not permament unless set in $HOME/.profile, but necessary for :GoInstallBinaries to work (see below)
 
 printf "\n--------------------\n"
@@ -248,7 +248,7 @@ printf "\n--------------------\n"
 printf "Installing docker-compose"
 printf "\n--------------------\n"
 # See: https://docs.docker.com/compose/install/#install-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
+sudo curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose # May need to update version number
 sudo chmod +x /usr/local/bin/docker-compose
 
 # printf "\n--------------------\n"
@@ -286,8 +286,8 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 printf "\n--------------------\n"
 printf "Installing slack"
 printf "\n--------------------\n"
-wget -P ~/Downloads https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.7-amd64.deb # May need to update version number (visit slack download page to find it)
-sudo apt-get install ~/Downloads/slack-desktop-3.3.7-amd64.deb
+wget -P ~/Downloads https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb # May need to update version number (visit slack download page to find it)
+sudo apt-get install ~/Downloads/slack-desktop-3.3.8-amd64.deb
 
 printf "\n--------------------\n"
 printf "Installing spotify"
@@ -435,14 +435,3 @@ printf "\n--------------------\n"
 printf "Creating $HOME/bin directory"
 printf "\n--------------------\n"
 mkdir ~/bin
-
-printf "\n--------------------\n"
-printf "Fetching .vimrc, .bashrc, and .profile"
-printf "\n--------------------\n"
-
-wget -O ~/.vimrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.vimrc
-wget -O ~/.bashrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.bashrc
-wget -O ~/.inputrc - https://raw.githubusercontent.com/cochran-at-niche/home/master/.inputrc
-wget -O ~/.profile - https://raw.githubusercontent.com/cochran-at-niche/home/master/.profile
-wget -O ~/.tmux.conf - https://raw.githubusercontent.com/cochran-at-niche/home/master/.tmux.conf
-wget -O ~/.tmuxline.conf - https://raw.githubusercontent.com/cochran-at-niche/home/master/.tmuxline.conf
