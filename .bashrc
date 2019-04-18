@@ -27,8 +27,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=50000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -136,6 +136,7 @@ alias l1='lg'
 alias j='jobs'
 alias kj='kill $(jobs -p)'
 alias postman='postman &> /dev/null'
+alias dc='docker-compose'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -167,3 +168,5 @@ export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 export GO111MODULE="on"
 
 export PGUSER="ncochran"
+
+export CDPATH="$CDPATH:$HOME/development"
