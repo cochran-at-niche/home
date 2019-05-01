@@ -426,10 +426,11 @@ fi
 git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 git config --global url.ssh://git@gitlab.com/.insteadOf https://gitlab.com/
 
-printf "\n--------------------\n"
-printf "Cleaning up unused dependencies"
-printf "\n--------------------\n"
-sudo apt-get autoremove
+# This can sometimes have unintended side-effects
+#printf "\n--------------------\n"
+#printf "Cleaning up unused dependencies"
+#printf "\n--------------------\n"
+# sudo apt-get autoremove
 
 printf "\n--------------------\n"
 printf "Creating $HOME/bin directory"
