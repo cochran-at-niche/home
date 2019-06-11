@@ -21,6 +21,9 @@ set hlsearch
 " Enter key clears highlighted search terms
 nnoremap <silent> <return> :noh<return><return>
 
+" More memory for syntax parsing in large files
+set maxmempattern=5000
+
 " Tabs and indentation
 set autoindent
 set smartindent
