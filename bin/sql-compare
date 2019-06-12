@@ -1,0 +1,32 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: ${0} <sourceConnection> <destinationConnection> <query>" >&2
+    exit 2
+}
+
+SRC=${1}
+DST=${2}
+QUERY=${3}
+
+if [ -z "${SRC}" ]
+  then
+    echo "Missing required argument: <sourceConnection>"
+    usage
+fi
+
+if [ -z "${DST}" ]
+  then
+    echo "Missing required argument: <destinationConnection>"
+    usage
+fi
+
+if [ -z "${QUERY}" ]
+  then
+    echo "Missing required argument: <query>"
+    usage
+fi
+
+FLAGS="--no-align --quiet --tuples-only"
+
+diff <(psql ${FLAGS} "${SRC}" -c "${QUERY}") <(psql ${FLAGS} "${DST}" -c "$QUERY")

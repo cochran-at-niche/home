@@ -51,9 +51,6 @@ set wildmode=longest:full,full
 set splitbelow
 set splitright
 
-" Highlight the current line
-set cursorline
-
 " Lazy redraw (e.g. don't redraw between each macro execution)
 set lazyredraw
 
@@ -87,6 +84,13 @@ set showmatch
 set background=dark
 let g:solarized_termtrans=1
 colorscheme solarized
+
+" Highlight the current line
+set cursorline
+
+" Underline instead of highlight
+" hi clear cursorline
+" hi cursorline gui=underline cterm=underline
 
 " Statusline theme:
 " https://github.com/vim-airline/vim-airline-themes
