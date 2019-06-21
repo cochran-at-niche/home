@@ -137,6 +137,7 @@ alias j='jobs'
 alias kj='kill $(jobs -p)'
 alias postman='postman &> /dev/null'
 alias dc='docker-compose'
+alias todo='grep --exclude-dir=vendor -R TODO'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -168,8 +169,6 @@ export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 export GO111MODULE="on"
 
 export PGUSER="ncochran"
-
-export CDPATH="$CDPATH:$HOME/development"
 
 export MY_TLD=cochran
 
