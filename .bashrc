@@ -137,7 +137,8 @@ alias j='jobs'
 alias kj='kill $(jobs -p)'
 alias postman='postman &> /dev/null'
 alias dc='docker-compose'
-alias todo='grep --exclude-dir=vendor -R TODO'
+alias grepr='grep --exclude-dir=vendor -n -R'
+alias todo='grepr TODO'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -167,6 +168,8 @@ fi
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 # export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
 export GO111MODULE="on"
+
+export CDPATH="$CDPATH:$HOME/links"
 
 export PGUSER="ncochran"
 
