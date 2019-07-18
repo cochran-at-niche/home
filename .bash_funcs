@@ -1,0 +1,3 @@
+dev() {
+    cd ~/src/github.com/nicheinc/development/$1
+}
