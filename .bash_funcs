@@ -1,10 +1,12 @@
-function dev {
-    cd ~/src/github.com/nicheinc/development/$1
+#!/bin/bash
+
+dev () {
+    cd "$HOME/src/github.com/nicheinc/development/$1"
     clear
 }
 
-function _dev {
-    local cur=${COMP_WORDS[COMP_CWORD]}
+_dev () {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
     COMPREPLY=( $(compgen -W "$(cd ~/src/github.com/nicheinc/development; ls -d */)" -- $cur))
 }
 
