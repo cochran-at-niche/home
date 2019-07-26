@@ -128,7 +128,7 @@ noremap <C-k> k<C-y>
 inoremap jj <ESC>
 
 " Make markdown easier to work with
-autocmd FileType markdown :set tw=79
+autocmd FileType markdown :set tw=80
 autocmd FileType markdown :set spell
 
 " Vim-go configuration
