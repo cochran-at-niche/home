@@ -1,7 +1,10 @@
 #!/bin/bash
 clear
-echo "Testing..."
-go test $@
+echo "Installing..."
+if go install $@; then
+    echo "Testing..."
+    go test $@
+fi
 
 inotifywait -e close_write,move,create,delete -m -r -q . |
 while read; do
@@ -12,6 +15,9 @@ while read; do
         true
     done
     clear
-    echo "Testing..."
-    go test $@
+    echo "Installing..."
+    if go install $@; then
+        echo "Testing..."
+        go test $@
+    fi
 done

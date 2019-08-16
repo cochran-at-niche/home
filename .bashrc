@@ -137,7 +137,7 @@ alias j='jobs'
 alias kj='kill $(jobs -p)'
 alias postman='postman &> /dev/null'
 alias dc='docker-compose'
-alias grepr='grep --exclude-dir=vendor -n -R'
+alias grepr='grep --exclude-dir=vendor --exclude-dir=".git" -n -R'
 alias todo='grepr TODO'
 
 # Add an "alert" alias for long running commands.  Use like so:
