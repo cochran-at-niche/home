@@ -203,3 +203,5 @@ set updatetime=10
 
 " Make gitgutter sign column always show, to prevent screen jumping effect
 " set signcolumn=yes
+
+command WS %s/\s\+$//g
