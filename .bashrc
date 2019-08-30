@@ -139,6 +139,7 @@ alias postman='postman &> /dev/null'
 alias dc='docker-compose'
 alias grepr='grep --exclude-dir=vendor --exclude-dir=".git" -n -R'
 alias todo='grepr TODO'
+alias treer='tree -a -I vendor'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
