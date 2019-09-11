@@ -7,6 +7,9 @@ dev () {
 
 _dev () {
     local cur="${COMP_WORDS[COMP_CWORD]}"
+    if [[ $cur = /* ]] || [[ $cur = ~* ]]; then
+        return
+    fi
     cd "$HOME/development"
     compopt -o filenames 2>/dev/null
     COMPREPLY=( $(compgen -d -- "$cur"))
