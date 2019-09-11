@@ -7,7 +7,9 @@ dev () {
 
 _dev () {
     local cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=( $(compgen -W "$(cd ~/src/github.com/nicheinc/development; ls -d */)" -- $cur))
+    cd "$HOME/development"
+    compopt -o filenames 2>/dev/null
+    COMPREPLY=( $(compgen -d -- "$cur"))
 }
 
 complete -F _dev dev
