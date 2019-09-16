@@ -174,8 +174,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # set up go env variables:
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
-# export GOROOT="/usr/local/go" # godef seems to need this in order to find the std lib. Otherwise, not necessary
-export GO111MODULE="on"
 
 export CDPATH="$CDPATH:$HOME/links"
 
