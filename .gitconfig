@@ -23,6 +23,7 @@
     rao = remote add origin
     rpo = remote prune origin
     rso = remote show origin
+    rs = restore --staged
     st = status
     su = submodule update
     sur = submodule update --remote
