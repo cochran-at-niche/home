@@ -5,10 +5,14 @@
     insteadOf = https://github.com/cochran-at-niche
 [url "ssh://git@niche.github.com/cochran-at-niche"]
     insteadOf = ssh://git@github.com/cochran-at-niche
+[url "ssh://git@niche.github.com/cochran-at-niche"]
+    insteadOf = git@github.com:cochran-at-niche
 [url "ssh://git@niche.github.com/nicheinc"]
     insteadOf = https://github.com/nicheinc
 [url "ssh://git@niche.github.com/nicheinc"]
     insteadOf = ssh://git@github.com/nicheinc
+[url "ssh://git@niche.github.com/nicheinc"]
+    insteadOf = git@github.com:nicheinc
 [url "ssh://git@github.com"]
     insteadOf = https://github.com
 [url "ssh://git@gitlab.com"]

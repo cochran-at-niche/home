@@ -126,10 +126,10 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -AlhXF --g'
-alias la='ls -A'
-alias l='ls -CF'
-alias lg='ls -1XF --g'
+alias ll='LC_COLLATE=C ls -AlhXF --g'
+alias la='LC_COLLATE=C ls -A'
+alias l='LC_COLLATE=C ls -CF'
+alias lg='LC_COLLATE=C ls -1XF --g'
 alias l1='lg'
 
 # other aliases
