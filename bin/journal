@@ -1,0 +1,6 @@
+#!/bin/bash
+
+filename=$(date +"%F")
+
+mkdir -p ~/journal
+echo -e "$(date +"%T")\t$@" >> ~/journal/${filename}
