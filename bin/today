@@ -1,0 +1,5 @@
+#!/bin/bash
+
+filename=$(date +"%F")
+
+cat ~/journal/${filename}
