@@ -10,7 +10,7 @@ _dev () {
     if [[ $cur = /* ]] || [[ $cur = ~* ]]; then
         return
     fi
-    cd "$HOME/development"
+    cd "$HOME/src/github.com/nicheinc/development"
     compopt -o filenames 2>/dev/null
     COMPREPLY=( $(compgen -d -- "$cur"))
 }
