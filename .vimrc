@@ -136,6 +136,7 @@ let g:go_fmt_command = "goimports"
 let g:go_addtags_transform="camelcase"
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+let g:go_rename_command = 'gopls'
 " let g:go_metalinter_autosave = 1
 let g:go_highlight_functions = 1
 " let g:go_highlight_function_arguments = 1
