@@ -43,3 +43,5 @@
     sur = submodule update --remote
 [credential]
     helper = cache
+[pull]
+	rebase = true

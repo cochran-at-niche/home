@@ -179,7 +179,7 @@ export CDPATH="$CDPATH:$HOME/links"
 
 export PGUSER="ncochran"
 
-export MY_TLD=cochran
+export MY_TLD=localhost
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
