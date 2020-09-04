@@ -99,6 +99,9 @@ let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 0
 let g:tmuxline_powerline_separators = 0
 
+" GitGutter Sign Column colors
+highlight! link SignColumn LineNr
+
 " A font that doesn't cause italics to be cut off (windows only)
 " set guifont=Consolas:h11
 
