@@ -99,9 +99,6 @@ let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 0
 let g:tmuxline_powerline_separators = 0
 
-" GitGutter Sign Column colors
-highlight! link SignColumn LineNr
-
 " A font that doesn't cause italics to be cut off (windows only)
 " set guifont=Consolas:h11
 
@@ -205,7 +202,14 @@ set ttimeoutlen=0
 " Set quicker update, for sake of vim-gitgutter status signs
 set updatetime=10
 
+" Fix gitgutter sign column colors
+highlight! link SignColumn LineNr
+
 " Make gitgutter sign column always show, to prevent screen jumping effect
 " set signcolumn=yes
 
+" Command for clearing trailing whitespace
 command WS %s/\s\+$//g
+
+" Insert a uuid under the cursor
+noremap <leader>u mu:r! uuidgen<return>daW`upjdd`u
