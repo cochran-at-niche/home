@@ -213,3 +213,6 @@ command WS %s/\s\+$//g
 
 " Insert a uuid under the cursor
 noremap <leader>u mu:r! uuidgen<return>daW`upjdd`u
+
+" Run doctoc on saving a README.md file
+:autocmd BufWritePost README.md silent execute "!doctoc <afile> &>/dev/null" | redraw!
