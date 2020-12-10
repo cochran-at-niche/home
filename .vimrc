@@ -160,6 +160,9 @@ au FileType go nmap <F7> <Plug>(go-coverage-browser)
 au FileType go nmap <F8> <Plug>(go-install)
 au FileType go nmap <F9> <Plug>(go-doc-browser)
 
+" rust.vim configurations
+let g:rustfmt_autosave = 1
+
 " Rename tmux window to name of file currently being edited in vim:
 " autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window " . expand("%"))
 " autocmd VimLeave * call system("tmux setw automatic-rename")
