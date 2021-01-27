@@ -137,7 +137,7 @@ alias j='jobs'
 alias kj='kill $(jobs -p)'
 alias postman='postman &> /dev/null'
 alias dc='docker-compose'
-alias grepr='grep --exclude-dir=vendor --exclude-dir=".git" -n -R'
+alias grepr='grep --exclude-dir="vendor" --exclude-dir="node_modules" --exclude-dir=".git" -n -R'
 alias todo='grepr TODO'
 alias treer='tree -a -I vendor'
 
