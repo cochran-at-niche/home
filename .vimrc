@@ -32,6 +32,10 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" 2-space tabs for front-end dev
+autocmd FileType typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 " Make backspace key work
 set backspace=indent,eol,start
 
