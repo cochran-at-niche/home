@@ -129,8 +129,7 @@ fi
 alias ll='LC_COLLATE=C ls -AlhXF --g'
 alias la='LC_COLLATE=C ls -A'
 alias l='LC_COLLATE=C ls -CF'
-alias lg='LC_COLLATE=C ls -1XF --g'
-alias l1='lg'
+alias l1='LC_COLLATE=C ls -1XF --g'
 
 # other aliases
 alias j='jobs'
